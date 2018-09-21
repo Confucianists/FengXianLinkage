@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>扩展信息</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dynamic.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div id="table">
+            <div class="header">
+                <div class="arrow" @click="closeWin">
+                    <img src="../image/return.png" alt="">
+                </div>
+                <div class="zline"></div>
+                {{name}}
+                <div class="asubmit" @click="save">{{saved}}</div>
+            </div>
+
+            <div class="clear dynamic"></div>
+            <div class="pk_mem_temp" v-for="(item,index) of items" v-cloak>
+
+                <div class="pk_mem_lable">{{item.column_name}}</div>
+                <div v-bind:class="{bg_j:item.parent_type_id!=='',pk_mem_input:item.parent_type_id!=='',pk_mem_input_all:item.parent_type_id===''}">
+                    <!-- <input v-if="item.parent_type_id!==''" @click="select(index)" readonly="readonly" v-model="item.value" type="text" name="" placeholder="请选择" /> -->
+                    <input v-if="item.column_label==='select'||item.column_label =='radio'" @click="select(index)" readonly="readonly" v-model="item.value" type="text" name="" placeholder="请选择" />
+                    <input v-else-if="item.column_label==='text' & item.column_type==='Date'" @click="select(index)" readonly="readonly" v-model="item.value" type="text" name="" placeholder="请选择" />
+                    <input v-else-if="item.column_label==='checkbox'" @click="select(index)" readonly="readonly" v-model="item.value" type="text" name="" placeholder="请选择(可多选)" />
+                    <input v-else-if="isBrowser" type="text" name="" v-model="item.value" readonly="readonly" placeholder="请输入" />
+                    <input v-else type="text" name="" v-model="item.value" placeholder="请输入" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/vue.js"></script>
+    <script type="text/javascript" src="../script/UICore.js"></script>
+    <script type="text/javascript" src="../script/dynamic.js"></script>
+</body>
+
+</html>

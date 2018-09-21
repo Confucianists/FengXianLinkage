@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日志查询结果</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/feelingDaily/FeelingDailyResult.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/FeelingDaily/FeelingDailyResult.js"></script>
+</head>
+<body>
+  <div class="wrapper" id="info">
+      <div class="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          日志查询结果
+      </div>
+      <div  class="container">
+          <div v-for="(item,index) of items" @click="choose(index)">
+            <div>受访对象姓名: {{item.populationId}}</div>
+            <div>工作人员: {{item.workerId}}</div>
+            <div>服务时间: {{item.serviceTime}}</div>
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>

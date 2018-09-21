@@ -1,0 +1,1 @@
+apicloud wifiSync --project ./ --updateAll false --port 8686

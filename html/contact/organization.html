@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>组织架构</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/contact/organization.css">
+</head>
+<body>
+    <div id="organ_all">
+      <div class="organ_main" v-show="main_show">
+        <ul class="loadover">
+          <li class="bg_j" v-for="item in items" @click="organ_detail(item.id,item.deptName)"><label>{{item.deptName}}</label><label>{{item.personNum}} 人</label></li>
+          <li class="loadinfo" v-show="showAll">{{showinfo}}</li>
+        </ul>
+      </div>
+      <div class="organ_detail">
+        <ul class="deloadover">
+          <li class="detitle" @click="to_main">办公室</li>
+          <li v-for="detail in details"><label>{{detail.personName}}</label><label>{{detail.phoneNum}}</lable></li>
+          <li class="deloadinfo" v-show="deshowAll">{{deshowinfo}}</li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/contact/organization.js"></script>
+</body>
+</html>

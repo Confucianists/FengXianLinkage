@@ -1,0 +1,37 @@
+body{
+	background-color: white;
+	font-size: 12px;
+}
+#network_all{
+	width: 100%;
+	height: auto;
+	border: 0px solid blue;
+}
+ul{
+	width: 100%;
+	border: 0px solid red;
+}
+ul li{
+	height: 35px;
+	border-bottom: 1px solid #F2F2F2;
+}
+#network_all ul li label{
+	margin-top: 10px;
+}
+#network_all ul li label:first-child{
+	margin-top: 10px;
+	float: left;
+	margin-left: 15px;
+}
+#network_all ul li label:last-child{
+	margin-top: 10px;
+	float: right;
+	margin-right: 15px;
+}
+.loadinfo{
+	text-align: center;
+	line-height: 35px;
+}
+.loadover{
+	display: none;
+}

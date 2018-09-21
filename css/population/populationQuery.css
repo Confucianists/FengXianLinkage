@@ -1,0 +1,116 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #EFEFEF;
+}
+.pk_togger {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 0px solid red;
+}
+
+.clear_bottom {
+    margin-bottom: 0px;
+}
+
+.pk_title {
+    width: 100%;
+    height: 35px;
+    float: left;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.dw_m {
+    color: #3E0000;
+    font-size: 12px;
+    letter-spacing: 0px;
+}
+
+.pk_mem_temp {
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: white;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.pk_mem_temp label {
+    margin-left: 3px;
+    line-height: 37px;
+}
+
+.pk_mem_temp_top {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 3px;
+    background-color: white;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.pk_mem_temp_top label {
+    margin-left: 3px;
+    line-height: 37px;
+}
+
+.pk_mem_lable {
+    width: 25%;
+    height: auto;
+    min-height: 15px;
+    float: left;
+    margin: 9px 0px 9px 10px;
+    border: 0px solid red;
+}
+
+.pk_mem_input {
+    width: 69.5%;
+    height: 20px;
+    float: left;
+    margin-top: 6px;
+    border: 0px solid red;
+}
+
+.pk_mem_input_all {
+    width: 69.5%;
+    height: 20px;
+    float: left;
+    margin-top: 6px;
+    border: 0px solid red;
+}
+
+.pk_mem_input input {
+    width: 95.5%;
+    height: 20px;
+    border: none;
+    outline: none;
+    text-align: right;
+}
+
+.pk_mem_input_all input {
+    width: 100%;
+    height: 20px;
+    border: none;
+    outline: none;
+    border-radius: 0px;
+    text-align: right;
+}
+
+@media (-webkit-max-device-pixel-ratio:2), (max-device-pixel-ratio:2) {
+    .pk_mem_input_all input {
+        width: 98%;
+    }
+    .pk_mem_input input {
+        width: 94%;
+        height: 18px;
+    }
+}

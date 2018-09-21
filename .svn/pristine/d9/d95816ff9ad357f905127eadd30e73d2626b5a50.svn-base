@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/house/querybuildingforhouse.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="header">
+            <div class="arrow" id="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            新增房屋
+            <div class="asubmit" id="pkh_add_su">查询</div>
+        </div>
+        <div class="container">
+            <div id="list" class="pk_togger" style="margin-top: 60px;">
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">建筑名称:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" v-bind:readonly="isClick" name="" v-model="buildingName" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">地图编号:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" v-bind:readonly="isClick" name="" v-model="buildingName" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">地址:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" v-bind:readonly="isClick" name="" v-model="buildingName" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">楼号类型:</div>
+                    <div class="bg_j pk_mem_input">
+                        <input type="text" @click="buildingTypef" v-model="buildingType" name="" readonly="readonly" placeholder="请选择" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">楼号:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" v-bind:readonly="isClick" name="" v-model="buildingName" placeholder="请输入" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/house/querybuildingforhouse.js"></script>
+</body>
+
+</html>

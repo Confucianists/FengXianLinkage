@@ -1,0 +1,353 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #EFEFEF;
+}
+
+.pk_togger {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 0px solid red;
+}
+
+.clear_bottom {
+    margin-bottom: 0px;
+}
+
+.pk_title {
+    width: 100%;
+    height: 35px;
+    float: left;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.dw_m {
+    color: #3E0000;
+    font-size: 12px;
+    letter-spacing: 0px;
+}
+
+.pk_mem_temp {
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: white;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.pk_mem_temp label {
+    margin-left: 3px;
+    line-height: 37px;
+}
+
+.pk_mem_temp_top {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 3px;
+    background-color: white;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.pk_mem_temp_top label {
+    margin-left: 3px;
+    line-height: 37px;
+}
+
+.pk_mem_lable {
+    width: 25%;
+    height: auto;
+    min-height: 15px;
+    float: left;
+    margin: 9px 0px 9px 10px;
+    border: 0px solid red;
+}
+
+.pk_mem_input {
+    width: 69.5%;
+    height: 20px;
+    float: left;
+    margin-top: 6px;
+    border: 0px solid red;
+}
+
+.pk_mem_input_all {
+    width: 69.5%;
+    height: 20px;
+    float: left;
+    margin-top: 6px;
+    border: 0px solid red;
+}
+
+.pk_mem_input input {
+    width: 95.5%;
+    height: 20px;
+    border: none;
+    outline: none;
+    text-align: right;
+}
+
+.pk_mem_input_all input {
+    width: 100%;
+    height: 20px;
+    border: none;
+    outline: none;
+    border-radius: 0px;
+    text-align: right;
+}
+
+@media (-webkit-max-device-pixel-ratio:2), (max-device-pixel-ratio:2) {
+    .pk_mem_input_all input {
+        width: 98%;
+    }
+    .pk_mem_input input {
+        width: 94%;
+        height: 18px;
+    }
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+.dynamic {
+    border: 1px solid red;
+}
+
+.pk_mem_input_all .binput {
+    display: inline-block;
+    width: 80%;
+}
+
+.pk_mem_input_all span {
+    display: inline-block;
+}
+
+.pk_mem_input .imap {
+    display: inline-block;
+    width: 60%;
+}
+
+.pk_mem_input span {
+    display: inline-block;
+    width: 90px;
+}
+@media (-webkit-max-device-pixel-ratio:2), (max-device-pixel-ratio:2) {
+    ..pk_mem_input .imap  {
+      display: inline-block;
+      width: 10%;
+    }
+    .pk_mem_input span {
+      display: inline-block;
+      width: 80px;
+    }
+}
+
+#ev_pls_all{
+	width: 100%;
+	height: auto;
+	float: left;
+	margin: 0px auto;
+	border: 0px solid red;
+}
+.ev_photo_all{
+	width: 100%;
+	height: auto;
+	float: left;
+	/*border-bottom: 1px solid #CDCDCD;*/
+}
+.ev_pls{
+	width: 100%;
+	height: 35px;
+	margin: 0 auto;
+	border-bottom: 1px solid #CDCDCD;
+	border-top: 1px solid #CDCDCD;
+}
+.ev_pls_img{
+	width: 22px;
+	height: 22px;
+	float: right;
+	margin: 6px auto;
+	margin-right: 2.5%;
+	background-size: 21px;
+	background-repeat: no-repeat;
+	border: 0px solid red;
+}
+.video{
+	background-position: 98% -41px;
+}
+.photo{
+	background-position: 98% -80px;
+}
+.record{
+	background-position: 98% -120px;
+}
+.ev_pls label{
+	height: 40px;
+	margin-left: 2.5%;
+	line-height: 39px;
+}
+.ev_atlas{
+	width: 92%;
+	height: auto;
+	float: left;
+	margin-left: 3.5%;
+	border: 0px solid blue;
+}
+.ev_atlas_one{
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	position:relative;
+	border: 1px solid #CDCDCD;
+}
+.ev_atlas_one img:last-child{
+	width: 70px;
+	height: 70px;
+	margin: 4px 3px;
+	border: 1px solid #EEE;
+}
+.ev_atlas_one img:first-child{
+	width: 15px;
+	height: 15px;
+	position:absolute;
+	margin-top: -6px;
+	margin-left: 72px;
+	cursor:pointer;
+}
+.ev_records{
+	width: 92%;
+	height: auto;
+	float: left;
+	margin-left: 3.5%;
+	border: 0px solid blue;
+}
+.ev_records_one{
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	position:relative;
+	border: 1px solid #CDCDCD;
+}
+.ev_records_one img:last-child{
+	width: 70px;
+	height: 70px;
+	margin: 4px 3px;
+	border: 1px solid #EEE;
+}
+.ev_records_one img:first-child{
+	width: 15px;
+	height: 15px;
+	position:absolute;
+	margin-top: -6px;
+	margin-left: 72px;
+}
+.ev_videos{
+	width: 92%;
+	height: auto;
+	float: left;
+	margin-left: 3.5%;
+	border: 0px solid blue;
+}
+.ev_videos_one{
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	position:relative;
+	border: 1px solid #CDCDCD;
+}
+.ev_videos_one img:last-child{
+	width: 70px;
+	height: 70px;
+	margin: 4px 3px;
+	border: 1px solid #EEE;
+}
+.ev_videos_one img:first-child{
+	width: 15px;
+	height: 15px;
+	position:absolute;
+	margin-top: -6px;
+	margin-left: 72px;
+}
+
+/*  */
+.white-bg{
+	background-color: #FFFFFF;
+}
+.hideBg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
+    width: 100%;
+    /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+    filter: alpha(opacity=30);
+    /*设置透明度为60%*/
+    opacity: 0.3;
+    /*非IE浏览器下设置透明度为60%*/
+    display: none;
+    z-Index: 11;
+    height: 100%;
+}
+.tele-item{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: none;
+	z-index: 12;
+}
+.tele-item ul li{
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #dbdbdb;
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+.tele-item ul li a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 1.1em;
+}
+.white-bg ul li{
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+/*============2017-7-24================间距增大*/
+.lab_size {
+    margin: 14px 0px 14px 10px;
+}
+
+.inp_size {
+    margin-top: 12px;
+}

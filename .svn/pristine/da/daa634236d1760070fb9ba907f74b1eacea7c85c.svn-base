@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>联系人</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" href="../css/contact/contact.css">
+</head>
+<body>
+  <div id="contact_all">
+    <div class="change_header">
+      <div class="cur_mk active" id="zzjg" @click="choose_zz">
+        <div class="hed_cur">
+          <div class="img"><img src="../image/lxr/zzjg.png"/></div>
+          <span>组织架构</span>
+        </div>
+      </div>
+      <div class="cur_mk" id="wly"  @click="choose_wl">
+        <div class="hed_cur">
+          <div class="img"><img src="../image/lxr/wgy.png"/></div>
+          <span>网格员</span>
+        </div>
+      </div>
+      <div class="cur_mk" id="qz" @click="choose_qz">
+        <div class="hed_cur">
+          <div class="img"><img src="../image/lxr/qz.png"/></div>
+          <span>群组</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hui_d"></div>
+  </div>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/UICore.js"></script>
+  <script type="text/javascript" src="../script/vue.js"></script>
+  <script type="text/javascript" src="../script/contact/contact.js"></script>
+</body>
+</html>

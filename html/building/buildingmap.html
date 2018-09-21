@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+  <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+  <title>建筑地图</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/building/buildingmap.css">
+</head>
+<body>
+  <div id="list">
+    <div id="header" style="z-index: 7;">
+        <div class="arrow" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+        <i id="titlename" style="font-style:normal">地图选择</i>
+        <div class="asubmit" @click="submit" id="submit">选择</div>
+    </div>
+    <div id="mapcontainer" class="container" style="z-index: 0;top: 0px;">
+        <div id="mapDiv" style="width: 100%;height: 100%;"></div>
+    </div>
+  </div>
+  <!--iframe style="position: absolute;width: 100%;height: 100%;" src="../hotspotSelect.html"></iframe-->
+
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/vue.js"></script>
+  <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/building/buildingmap.js"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/js/coordtransform.js"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/OMAP-source.js"></script>
+  <script type="text/javascript" src="../../script/building/hotspotselect.js"></script>
+</body>
+</html>

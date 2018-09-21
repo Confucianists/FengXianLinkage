@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>部件查询</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cityComponent/cityComponent.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/CityComponent/cityComponentQuery.js"></script>
+
+    <script type="text/x-template" id="item-element">
+      <div class="pk_mem_temp">
+          <div class="pk_mem_lable" >{{actioname}}</div>
+          <div :class="myclass">
+            <slot></slot>
+          </div>
+      </div>
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper" id="list">
+        <mt-header fixed title="部件查询" style="height:50px;font-size:18px">
+          <mt-button slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+            返回
+          </mt-button>
+          <mt-button  slot="right" @click.native="queryFunc" style="font-size:18px">查询</mt-button>
+        </mt-header>
+        <!-- <div id="header">
+            <div class="arrow" id="closeWin" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+              部件查询
+            <div class="asubmit" id="pkh_add_su" @click="queryFunc">查询</div>
+        </div> -->
+        <div class="container">
+            <div  class="pk_togger" style="margin-top: 60px;">
+
+              <mt-cell title="部件类型:" is-link @click.native="componentTypef" v-model="componentType" >
+              </mt-cell>
+              <mt-cell title="部件子类型:" is-link @click.native="componentSecondTypef" v-model="componentSecondType">
+              </mt-cell>
+
+              <!-- <main-item actioname="部件类型" myclass="pk_mem_input_all">
+                  <input type="text" @click="componentTypef"  name="" v-model="componentType" placeholder="请选择" readOnly="true"/>
+              </main-item>
+              <main-item actioname="部件子类型" myclass="pk_mem_input_all">
+                  <input type="text" @click="componentSecondTypef"  name="" v-model="componentSecondType" placeholder="请选择" readOnly="true"/>
+              </main-item> -->
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

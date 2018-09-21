@@ -1,0 +1,73 @@
+.ev_hui_top{
+	width: 100%;
+	height: 5px;
+	margin-top:60px;
+	background-color: #EFEFEF;
+}
+#choose_drs{
+	width: 95%;
+	height: auto;
+	margin: 0 auto;
+}
+.drs_all{
+	width: 100%;
+	min-height: 200px;
+	border-radius: 5px;
+	border: 1px solid #CDCDCD;
+}
+.drs_all ul{
+	margin-top: 0px;
+}
+.drs_all ul li{
+	margin-left: -40px;
+	line-height: 30px;
+	border-bottom: 1px solid #CDCDCD;
+}
+.drs_oneimg{
+	width: 20px;
+	height: 20px;
+	float: left;
+	line-height: 0px;
+	margin: 5px 15px;
+	border: 0px solid red;
+}
+.drs_all ul li img{
+	width: 20px;
+	height: 20px;
+}
+.p_blable{
+	font-size: 14px;
+	color: blue;
+	line-height: 30px;
+}
+#choose_pers{
+	width: 95%;
+	height: auto;
+	margin: 0 auto;
+}
+.pers_all{
+	width: 100%;
+	min-height: 200px;
+	border-radius: 5px;
+	border: 1px solid #CDCDCD;
+}
+.pers_all ul{
+	margin-top: 0px;
+}
+.pers_all ul li{
+	/*margin-left: -40px;*/
+	line-height: 30px;
+	border-bottom: 1px solid #CDCDCD;
+}
+.per_oneimg{
+	width: 20px;
+	height: 20px;
+	float: left;
+	line-height: 0px;
+	margin: 5px 15px;
+	border: 0px solid red;
+}
+.pers_all ul li img{
+	width: 20px;
+	height: 20px;
+}

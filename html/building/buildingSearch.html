@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>建筑名称列表</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/building/buildingSearch.css">
+    <link rel="stylesheet" href="../../css/animate/animate.css">
+
+</head>
+<body>
+  <div class="wrapper" id="all_con">
+    <div id="header">
+        <div class="arrow">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+        建筑名称列表
+        <div class="asubmit" @click="tjquery">查询</div>
+    </div>
+    <div id="info" class="container">
+        <div class="temp_result">
+          <div class="blue_border"></div>
+          <div class="num_sort"><h1>1</h1></div>
+          <div class="result_info">
+            <div class="info_top">
+              <label>北创科技园</label><label>(20121245451)</label>
+            </div>
+            <div class="info_botton">
+              <label>无锡市兴源北路401号</label><label class="s_j">|</label>楼号:<label>142</label>
+            </div>
+          </div>
+        </div>
+        <div class="temp_result">
+          <div class="blue_border"></div>
+          <div class="num_sort"><h1>1</h1></div>
+          <div class="result_info">
+            <div class="info_top">
+              <label>新区软件园</label><label>(652142545241)</label>
+            </div>
+            <div class="info_botton">
+              <label>无锡市新区西十路</label><label class="s_j">|</label>楼号:<label>521</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--遮罩层定义-->
+      <div  class="zcover" @click="cover_close" :style="{ display:isshow}"></div>
+      <div class="search_box" v-bind:class="{ slideInDown: isSlideInDown}" :style="{ display:isshow}">
+        <div class="pk_mem_temp">
+          <div class="pk_mem_lable">建筑名称:</div>
+          <div class="pk_mem_input_all">
+            <input type="text" id="jzmc" name="" placeholder="请输入"/>
+          </div>
+        </div>
+        <div class="pk_mem_temp">
+          <div class="pk_mem_lable">地图编号:</div>
+          <div class="pk_mem_input_all">
+            <input type="text" id="dtbh" name="" placeholder="请输入"/>
+          </div>
+        </div>
+        <div class="pk_mem_temp">
+          <div class="pk_mem_lable">地址:</div>
+          <div class="pk_mem_input_all">
+            <input type="text" id="address" name="" placeholder="请输入"/>
+          </div>
+        </div>
+        <div class="pk_mem_temp">
+          <div class="pk_mem_lable">楼号类型:</div>
+          <div class="pk_mem_input bg_j">
+            <input type="text" id="address" name="" placeholder="请选择"/>
+          </div>
+        </div>
+        <div class="pk_mem_temp">
+          <div class="pk_mem_lable">楼号:</div>
+          <div class="pk_mem_input_all">
+            <input type="text" id="buildingnum" name="" placeholder="请输入-必填"/>
+          </div>
+        </div>
+        <button class="search_submit">搜索</button>
+      </div>
+  </div>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/UICore.js"></script>
+  <script type="text/javascript" src="../../script/vue.js"></script>
+  <script type="text/javascript" src="../../script/building/buildingSearch.js"></script>
+</body>
+</html>

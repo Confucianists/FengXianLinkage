@@ -1,0 +1,43 @@
+body{
+	background-color: white;
+	font-size: 12px;
+}
+.content{
+	width: 100%;
+	height: auto;
+	margin-top: 60px;
+	border: 0px solid red;
+}
+ul{
+	width: 100%;
+	border: 0px solid red;
+}
+ul li{
+	height: 35px;
+	border-bottom: 1px solid #F2F2F2;
+}
+.content ul li label{
+	margin-top: 10px;
+}
+.content ul li label:first-child{
+	margin-top: 10px;
+	float: left;
+	margin-left: 15px;
+}
+.content ul li label:last-child{
+	margin-top: 10px;
+	float: right;
+	margin-right: 15px;
+}
+.hui_d{
+	width: 100%;
+	height: 10px;
+	background-color: #F6F6F6;
+}
+.loadinfo{
+	text-align: center;
+	line-height: 35px;
+}
+.loadover{
+	display: none;
+}

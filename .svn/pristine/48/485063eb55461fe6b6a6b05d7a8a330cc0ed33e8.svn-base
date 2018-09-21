@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通知公告</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/feelingDaily/FeelingDailyResult.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/Notice/noticeList.js"></script>
+</head>
+<body>
+  <div class="wrapper" id="info">
+      <div class="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          通知公告
+      </div>
+      <div  class="container">
+          <div v-for="(item,index) of items" @click="choose(index)">
+            <div>  标题:  {{item.title}}</div>
+            <div>  时间:  {{item.createTime}}</div>
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>

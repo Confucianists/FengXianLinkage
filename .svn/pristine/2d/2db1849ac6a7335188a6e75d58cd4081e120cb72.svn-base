@@ -1,0 +1,560 @@
+/*-------------通用设置-----------------*/
+body,textarea{
+	margin:0 auto;
+	font-family: "microsoft yahei";
+    font-size: 12px;
+}
+[v-cloak] {
+  display: none;
+}
+html, body{
+	height:100%;
+/*	overflow:hidden;
+	overflow-y: scroll;*/
+}
+::-webkit-scrollbar
+{
+    width: 0px;
+    height: 0px;
+}
+html {
+    -ms-overflow-style:none;
+    overflow:-moz-scrollbars-none;
+}
+dl,dt,dd,span{
+	margin:0;
+	padding:0;
+	font-size:13px;
+	letter-spacing:2px;
+	display:block;
+}
+a,a:focus{
+	color:black;
+	text-decoration:none;
+	outline:none;
+}
+a:hover{
+	text-decoration:none;
+}
+img{
+	border:0;
+}
+ul{
+	margin: 0;
+	left: 0;
+}
+ul li{
+	list-style-type:none;
+}
+button{
+	font-family: "microsoft yahei";
+}
+textarea{
+		-webkit-appearance: none;
+}
+/*------------头部样式设计--------------*/
+#header{
+	width: 100%;
+	height: 60px;
+	color: white;
+	font-size: 18px;
+	letter-spacing: 2px;
+	text-align: center;
+	line-height: 60px;
+	position:fixed;
+	top:0; left: 0;
+	/*background: #149ce6 linear-gradient(#1391db, #169be8) repeat scroll 0% 0%;*/
+	background-color: #2C61C8;
+}
+.header{
+	width: 100%;
+	height: 60px;
+	color: white;
+	font-size: 18px;
+	letter-spacing: 2px;
+	text-align: center;
+	line-height: 60px;
+	/*background: #149ce6 linear-gradient(#1391db, #169be8) repeat scroll 0% 0%;*/
+	background-color: #2C61C8;
+}
+/*返回箭头样式*/
+.arrow{
+	float: left;
+	margin-left: 15px;
+	margin-top: 20px;
+	width:20px;
+	height:20px;
+	line-height: 20px;
+	border: 0px solid red;
+}
+.arrow img{
+	width: 19px;
+	height: 20px;
+}
+/*小竖线*/
+.zline{
+	border-right: 1px solid white;
+	width: 1px;
+	height: 25px;
+	margin-left: 12px;
+	float: left;
+	margin-top: 18px;
+}
+.zlined{
+	width:1px;
+	height: 26px;
+	border-right: 1px solid #C0C0C0;
+	margin-top: 3px;
+}
+/*下划线的定义*/
+.lline{
+	height:1px;
+	border:none;
+	border-top:1px solid #CDCDCD;
+}
+/*提交按钮*/
+.asubmit{
+	float: right;
+	width: 40px;
+	height:28px;
+	color: blue;
+	font-size: 12px;
+	line-height: 28px;
+	margin-top: 16px;
+	margin-right:15px;
+	border-radius: 5px;
+	background-color: white;
+	border: 0px solid red;
+}
+/*多选  选中样式*/
+.alchecked{
+	color: white;
+	background-color: #4242FF;
+}
+/*通用白色背景div*/
+.cdiv{
+	width: 95%;
+	border: 0px solid red;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.currency_div{
+	width:100%;
+	height: auto;
+	float: left;
+	font-size: 13px;
+	margin-bottom: 4px;
+	background-color: white;
+}
+/*底部按钮选中样式*/
+.butchoose{
+	color: blue;
+	font-weight: bold;
+}
+/*工作、动态、我的通用样式*/
+#titlediv{
+	width: 100%;
+	height:40px;
+	letter-spacing: 3px;
+	line-height: 40px;
+	background-color: white;
+}
+#titlediv label{
+	font-size: 16px;
+	letter-spacing: 2px;
+	margin-left: 15px;
+}
+#imgavi{
+	width: 100%;
+	height: 100px;
+	background-color: #0000D9;
+}
+#imgavi img{
+	width: 100%;
+	height: 100px;
+}
+/*底部选中项  通用样式*/
+.footer{
+	background-color: #EFEFEF;
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	width: 100%;
+	border-top: 1px solid #C0C0C0;
+}
+.footer table{
+	width: 100%;
+	height: 45px;
+}
+.footlimg{
+	width: 32px;
+	height: 32px;
+	margin: 2px auto;
+}
+.footlimg img{
+	width: 32px;
+	height: 32px;
+}
+.foothz{
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	font-size: 12px;
+	margin: 0 auto;
+}
+/*确定取消按钮存放容器*/
+.handlebuttom{
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	width: 100%;
+	height: 33px;
+	background-color: #EFEFEF;
+}
+/*遮罩层定义*/
+.zcover{
+    width:100%;
+    height:100%;
+    background-color:#000;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:0;
+    opacity:0.1;
+    /*兼容IE8及以下版本浏览器*/
+    filter: alpha(opacity=30);
+    display:none;
+}
+/* 遮罩样式 */
+.hideBg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
+    width: 100%;
+    /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+    filter: alpha(opacity=30);
+    /*设置透明度为60%*/
+    opacity: 0.3;
+    /*非IE浏览器下设置透明度为60%*/
+    display: none;
+    z-Index: 11;
+    height: 100%;
+}
+/*弹出层定义（单选多选）*/
+.tcmodel{
+	width: 80%;
+	z-index:1;
+	height: auto;
+	margin-left: 10%;
+	border-radius: 3px;
+	display:none;
+	position:fixed;
+	top: 90px;
+	background-color: white;
+	box-shadow:0px 0px 8px black;
+	-webkit-box-shadow: 0px 0px 8px black;/*webkit*/
+	-moz-box-shadow: 0px 0px 8px black;/*firefox*/
+}
+.tcmodel ul{
+	margin: 0px auto;
+}
+.tcmodel ul li{
+	line-height: 40px;
+	border-bottom: 1px solid #C0C0C0;
+}
+.tcmodel label{
+	margin-left: 10px;
+}
+.tcmodel ul li:first-child{
+	border-bottom: 1px solid blue;
+}
+.tcmodel ul li:first-child label{
+	color: blue;
+}
+.radioc{
+  float: right;
+  margin-right: 10px;
+  height: 35px;
+}
+.conorcan{
+	width: 100%;
+	height: 40px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 40px;
+}
+.cancel{
+	width: 49%;
+	height: 40px;
+	float: left;
+	cursor:pointer;
+	border-right: 1px solid #C0C0C0;
+}
+.confirm{
+	width: 49%;
+	height: 40px;
+	float: right;
+	cursor:pointer;
+}
+.cancel_right{
+	width: 49%;
+	height: 40px;
+	float: right;
+	cursor:pointer;
+}
+.confirm_left{
+	width: 49%;
+	height: 40px;
+	float: left;
+	cursor:pointer;
+	border-right: 1px solid #C0C0C0;
+}
+
+/*--------------------扶贫事件上报通用样式---------------------------------------------------*/
+#ev_header{
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 15px;
+	letter-spacing: 2px;
+	position:fixed;
+	top:0; left: 0;
+	background-color: white;
+	border-bottom: 1px solid #EFEFEF;
+}
+/*返回箭头样式*/
+.ev_arrow{
+	float: left;
+	margin-left: 15px;
+	margin-top: 10px;
+	width:20px;
+	height:20px;
+	line-height: 20px;
+	border: 0px solid red;
+}
+.ev_arrow img{
+	width: 19px;
+	height: 20px;
+}
+
+/*-----------2017-6-21--------------删除全选按钮-----*/
+.myoperall{
+	width: 100%;
+	height: 50px;
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	display: none;
+	background-color: white;
+	border-top: 1px solid #F0F0F0;
+}
+.dellist{
+	width: 48%;
+	height: 36px;
+	line-height: 36px;
+	outline: none;
+	cursor: pointer;
+	float: right;
+	border-radius: 5px;
+	color: blue;
+	/*background-color: #F7F7F7;*/
+	border: 1px solid #F0F0F0;
+}
+.del_choose{
+	color: white;
+	background-color: #2C61C8;
+}
+.all_choose{
+
+}
+.choose_all{
+	width: 48%;
+	height: 36px;
+	line-height: 36px;
+	outline: none;
+	cursor: pointer;
+	float: left;
+	color: blue;
+	border-radius: 5px;
+	border: 1px solid #F0F0F0;
+}
+.myoper_in{
+	width: 94%;
+	height: 36px;
+	margin: 5px auto;
+	font-size: 13px;
+	text-align: center;
+	letter-spacing: 5px;
+	background-color: white;
+}
+
+/*---------------2017-6-22-------------箭头背景添加---------------*/
+.bg_j{
+	display: block;
+	background: url(../image/arrow_icon.png) no-repeat right 0px center;
+	background-size: 6px;
+}
+
+/*改变placeholder样式*/
+::-webkit-input-placeholder { /* WebKit browsers */
+color: #868686;
+font-size: 13px;
+line-height: 1.3em;
+text-indent: 0.7em;
+font-family: "microsoft yahei";
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+color: #868686;
+font-size: 13px;
+line-height: 1.3em;
+text-indent: 0.7em;
+font-family: "microsoft yahei";
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+color: #868686;
+font-size: 13px;
+line-height: 1.3em;
+text-indent: 0.7em;
+font-family: "microsoft yahei";
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+color: #868686;
+font-size: 13px;
+line-height: 1.3em;
+text-indent: 0.7em;
+font-family: "microsoft yahei";
+}
+
+/*-----------------------2017-6-22---------checkbox样式修改---------------*/
+input[type=checkbox] {
+  position: relative;
+  width: 13px;
+  height: 1px;
+	border: none;
+}
+input[type=checkbox]::before,
+input[type=checkbox]::after {
+  position: absolute;
+  display: block;
+  content: '';
+  transition: .3s all esae;
+}
+input[type=checkbox]::before {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid #CDCDCD;
+}
+input[type=checkbox]::after {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+input[type=checkbox]:checked::before {
+  border-color: blue;
+}
+input[type=checkbox]:checked::after {
+  background-image:url(../image/choose_blue.png);
+  background-size:cover;
+}
+
+/*------------2017.6.25------------搜索框样式------------------*/
+.data_search{
+	width: 97%;
+	height: 35px;
+	line-height: 35px;
+	border-radius: 4px;
+	margin: 0px auto;
+	margin-top: 7px;
+	text-align: center;
+	border: 1px solid #F0F0F0;
+}
+.search_left{
+	width: 73%;
+	height: 25px;
+	margin-left: 1.2em;
+	margin-top: 6px;
+	float: left;
+	background: url(../../img/log/icon_search.png) no-repeat left top 5px;
+	background-size: 15px;
+	border: 0px solid red;
+}
+.search_left input{
+	width: 91%;
+	height: 21px;
+	border: none;
+	outline:none;
+	float: right;
+}
+.search_right_but{
+	width: 50px;
+	height: 35px;
+	color: white;
+	background-color: #2C61C8;
+	float: right;
+	border-radius: 2px;
+	border: 0px solid red;
+}
+
+
+.pk_mem_temp{
+	width: 100%;
+	height: auto;
+	float: left;
+	background-color: white;
+	border-bottom: 1px solid #CDCDCD;
+}
+.pk_mem_lable{
+	width: 25%;
+	height: auto;
+	min-height: 15px;
+	float: left;
+	margin:10px 0px 10px 10px;
+	/*border: 0px solid red;*/
+}
+.pk_mem_input{
+	width: 69.5%;
+	height: 16px;
+	float: left;
+	margin-top: 10px;
+	border: 0px solid red;
+}
+.pk_mem_input_all{
+	width: 69.5%;
+	height: 16px;
+	float: left;
+	margin-top: 10px;
+	border: 0px solid red;
+}
+.pk_mem_input input{
+	width: 95.5%;
+	border: none;
+	outline: none;
+	margin-top:1px;
+	text-align: right;
+}
+.pk_mem_input_all input{
+	width: 100%;
+	border: none;
+	outline: none;
+	border-radius: 0px;
+	text-align: right;
+}
+
+.search_submit{
+	width: 100%;
+	height: 41px;
+	color: white;
+	font-size: 17px;
+	border-radius: 3px;
+	letter-spacing: 5px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	margin-top: 15px;
+	background-color: #2C61C8;
+}

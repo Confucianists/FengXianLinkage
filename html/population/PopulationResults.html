@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>人口查询结果</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/population/PopulationResults.css">
+    <link rel="stylesheet" href="../../css/animate/animate.css">
+</head>
+<body>
+  <div class="wrapper" id="all_con">
+      <div id="info" class="container">
+          <ul v-for="(item,index) of items" @click="choose(index)">
+              <li>
+                  <div class="temp_result">
+                      <div class="blue_border"></div>
+                      <div class="num_sort">
+                          <h1>{{index+1}}</h1></div>
+                      <div class="result_info">
+                          <div class="info_top">
+                              <label>{{item.name}}</label><label>({{item.idNumber}})</label>
+                          </div>
+                          <div class="info_botton">
+                              <label>{{item.livingAddress}}</label><label class="s_j">|</label>性别:<label>{{item.sex}}</label>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </div>
+
+
+      <!--遮罩层定义-->
+      <div style="display:block" class="zcover" @click="cover_close"  v-show="isshow"></div>
+      <transition name="custom-classes-transition" enter-active-class="slideInDown"  leave-active-class="slideInUp">
+        <div class="search_box"  v-show="isshow">
+            <div class="pk_mem_temp">
+                <div class="pk_mem_lable">建筑名称:</div>
+                <div class="pk_mem_input_all">
+                    <input type="text" name="" v-model="buiName" placeholder="请输入" />
+                </div>
+            </div>
+            <div class="pk_mem_temp">
+                <div class="pk_mem_lable">姓名:</div>
+                <div class="pk_mem_input_all">
+                    <input type="text" name="" v-model="name" placeholder="请输入" />
+                </div>
+            </div>
+            <div class="pk_mem_temp">
+                <div class="pk_mem_lable">身份证:</div>
+                <div class="pk_mem_input_all">
+                    <input type="text" name="" v-model="identity" placeholder="请输入" />
+                </div>
+            </div>
+            <div class="pk_mem_temp">
+                <div class="pk_mem_lable">性别:</div>
+                <div class="bg_j pk_mem_input">
+                    <input type="text" name="" @click="sexf" v-model="sex" readonly="readonly" placeholder="请选择" />
+                </div>
+            </div>
+            <button class="search_submit" @click="query">搜索</button>
+        </div>
+      </transition>
+  </div>
+
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/UICore.js"></script>
+  <script type="text/javascript" src="../../script/vue.js"></script>
+  <script type="text/javascript" src="../../script/population/PopulationResults.js"></script>
+</body>
+</html>

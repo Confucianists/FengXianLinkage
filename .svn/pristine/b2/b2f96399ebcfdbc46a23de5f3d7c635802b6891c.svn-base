@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>网格员</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/contact/networkmans.css">
+</head>
+<body>
+    <div id="network_all">
+      <ul class="loadover">
+        <li v-for="item in items" @click="tel_play(item.phoneNum)"><label>{{item.personName}}</label><label>{{item.phoneNum}}</lable></li>
+        <li class="loadinfo" v-show="showAll">{{showinfo}}</li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/contact/networkmans.js"></script>
+</body>
+</html>

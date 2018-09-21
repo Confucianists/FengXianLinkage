@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="../../css/currency/main.css">
+  <link rel="stylesheet" href="../../css/event/event_report.css">
+  <script src="../../script/api.js"></script>
+  <script src="../../script/vue.js"></script>
+  <script src="../../script/vueMixin.js"></script>
+  <script src="../../script/UICore.js"></script>
+  <script src="../../script/event/detailForm.js"></script>
+  <script type="text/javascript" src="../../script/baiduToWgs84.js"></script>
+  <title>事件明细</title>
+</head>
+
+<body style="background-color:#f2f2f2;">
+  <div id="app">
+    <div id="header">
+      <div class="arrow" id="closeWin" @click="closeWin">
+        <img src="../../image/return.png" alt="">
+      </div>
+      <div class="zline"></div>
+      事件明细
+    </div>
+    <div class="ev_hui_top"></div>
+    <div id="ev_content" v-cloak>
+      <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='text' && mydata.is_show_in_mobile==true">
+        <input slot="myele" type="text" readonly :value="anaAddress(mydata.column_name, mydata.default_value, index)" v-model="mydata.default_value"/>
+      </myelement>
+      <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='Date' && mydata.is_show_in_mobile==true">
+        <input slot="myele" type="text" name="" readonly :value="mydata.default_value" />
+      </myelement>
+      <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="(mydata.column_label=='select'||mydata.column_label=='radio') && mydata.is_show_in_mobile==true">
+        <input slot="myele" type="text" name="" readonly :value="mydata.default_value" />
+      </myelement>
+      <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='checkbox' && mydata.is_show_in_mobile==true">
+        <input slot="myele" type="text" name="" readonly :value="mydata.default_value" />
+      </myelement>
+      <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_textarea" v-if="mydata.column_label=='textarea' && mydata.is_show_in_mobile==true">
+        <textarea slot="myele">{{mydata.default_value}}</textarea>
+      </myelement>
+    </div>
+  </div>
+</body>
+<template id="item-element">
+  <div class="er_templ">
+    <div class="er_templ_in">
+      <div class="er_lable">{{param}}</div>
+      <div :class="myclass">
+        <slot name="myele"></slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+</html>

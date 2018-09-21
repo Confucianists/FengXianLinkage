@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>房户信息</title>
+    <link rel="stylesheet" href="../../css/main.css">
+      <link rel="stylesheet" href="../../css/mint-ui.css">
+    <link rel="stylesheet" href="../../css/legalPerson.css">
+</head>
+
+<body>
+    <div id="list" class="wrapper">
+        <div id="header">
+            <div class="arrow" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            户籍信息
+        </div>
+        <div class="container">
+            <div class="pk_togger" style="margin-top: 60px;">
+              <mt-cell title="新增户籍" @click.native="create" is-link>
+              </mt-cell>
+
+              <mt-cell title="查询户籍" @click.native="query" is-link>
+              </mt-cell>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+      <script type="text/javascript" src="../../script/mint-ui.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/houseowner/houseownerMain.js"></script>
+</body>
+<template id="access">
+  <div class="pk_mem_temp">
+      <div class="pk_mem_lable lab_size">{{accesstitle}}</div>
+      <div class="bg_j pk_mem_input inp_size">
+          <slot></slot>
+      </div>
+  </div>
+</template>
+
+</html>

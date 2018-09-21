@@ -1,0 +1,28 @@
+.ev_hui_top{
+	width: 100%;
+	height: 5px;
+	margin-top:55px;
+	background-color: #EFEFEF;
+}
+.de_temp{
+	width: 100%;
+	min-height: 35px;
+	font-size: 13px;
+	margin: 0 auto;
+	border-bottom: 1px solid #CDCDCD;
+}
+.de_temp_in{
+	width: 95%;
+	min-height: 25px;
+	margin: 10px auto;
+	border: 0px solid red;
+}
+.de_temp_in label{
+	float: left;
+	margin-right: 15px;
+}
+.de_temp_in span{
+	text-align: right;
+	color: #959595;
+	font-size: 12px;
+}
