@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增部件</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/event/event_type.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/event/eventType.js"></script>
+
+    <script type="text/x-template" id="item-element">
+      <div class="pk_togger" >
+        <div class="title_g bg_hide" @click="showOrHide"  v-ripple="'rgba(46, 173, 252, 0.71)'">{{titlename}}</div>
+          <div class="er_templ" v-show="isshow.show" v-for="(item,index) in dataarr" v-ripple="'rgba(46, 173, 252, 0.71)'" :key="item.id" @click.stop="selectFlow(item.code,item.id)">
+            <div class="er_templ_in">
+              <div class="er_lable" >{{item.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+</head>
+<body>
+  <div id="list">
+    <!-- 标题栏 -->
+    <div id="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          事项选择
+        <div class="asubmit" id="pkh_add_su">提交</div>
+    </div>
+
+    <!-- 表单内容 -->
+    <div class="ev_hui_top"></div>
+    <div id="ev_content" >
+      <form-item v-for="(item,index) in itemArray" :dataarr="item.children" :titlename="item.name" :isshow="item" :key="item.id">
+        {{item.name}}
+      </form-item>
+
+    </div>
+  </div>
+
+
+
+
+</body>
+
+</html>

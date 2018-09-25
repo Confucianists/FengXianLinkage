@@ -1,0 +1,88 @@
+body{
+	background-color: #F6F6F6;
+}
+.logoimg{
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	top:0px;
+	background-color:white;
+}
+.logoimg img{
+	width: 100%;
+	height: 100px;
+}
+.content{
+	width: 100%;
+	overflow: auto;
+	border: 0px solid red;
+}
+.template{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 12px;
+	background-color: white;
+	border-top: 1px solid #F6F6F6;
+}
+.title{
+	width:100%;
+	height: 35px;
+	line-height: 35px;
+	margin: 0 auto;
+	font-size: 13px;
+	letter-spacing: 2px;
+	border-bottom: 1px solid #F6F6F6;
+}
+.title_name{
+	width: 50%;
+	height: 35px;
+	line-height: 35px;
+	float: left;
+	margin-left: 15px;
+	font-size: 14px;
+	letter-spacing: 2px;
+	border: 0px solid red;
+}
+.temp_list{
+	width:100%;
+	height: auto;
+	margin: 0 auto;
+	border: 0px solid red;
+}
+.temp_cur{
+	width: 100px;
+	height: 100px;
+	float: left;
+	border: 1px solid #F6F6F6;
+	border-left: none;
+	border-top: none;
+}
+.ckear_both{
+	clear: both;
+}
+.temp_cur span{
+	width: 100%;
+	margin: 0 auto;
+	font-size: 12px;
+	line-height: 14px;
+	text-align: center;
+}
+.simg{
+	width: 35px;
+	height: 35px;
+	margin: 0 auto;
+	margin-top: 12px;
+	margin-bottom: 8px;
+	border: 0px solid red;
+}
+.simg img{
+	width: 35px;
+	height: 35px;
+}
+.notop{
+  margin-top: 0px;
+}
+.topf1{
+  margin-top: -1px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>城市部件列表</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/building/QueryBuiForHouseResult.css">
+    <link rel="stylesheet" href="../../css/animate/animate.css">
+</head>
+
+<body>
+    <div  id="all_con" v-cloak>
+        <div id="info" class="container">
+            <ul v-for="(item,index) of items" @click="choose(item)">
+                <li>
+                    <div class="temp_result">
+                        <div class="blue_border"></div>
+                        <div class="num_sort">
+                            <h1>{{index+1}}</h1></div>
+                        <div class="result_info">
+                            <div class="info_top">
+                                <label>{{item.componentName}}</label><label>({{item.componentCode}})</label>
+                            </div>
+                            <div class="info_botton">
+                                <label>部件类型:</label><label>{{item.componentType | componentTypeFilter}}</label><label class="s_j">|</label>部件状态:<label>{{item.componentStatue | componentStatus}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <!--遮罩层定义-->
+        <div style="display:block" class="zcover" @click="cover_close"  v-show="isshow"></div>
+        <transition name="custom-classes-transition" enter-active-class="slideInDown"  leave-active-class="slideInUp">
+          <div class="search_box"  v-show="isshow" >
+              <div class="pk_mem_temp">
+                  <div class="pk_mem_lable">部件名称:</div>
+                  <div class="pk_mem_input_all">
+                      <input type="text" name="" v-model="componentName" placeholder="请输入" />
+                  </div>
+              </div>
+              <div class="pk_mem_temp">
+                  <div class="pk_mem_lable">部件类型:</div>
+                  <div class="pk_mem_input_all bg_j">
+                      <input type="text" name="" @click="componentTypeC" v-model="componentType" readonly="readonly" placeholder="请选择"  />
+                  </div>
+              </div>
+              <div class="pk_mem_temp">
+                  <div class="pk_mem_lable">部件子类型:</div>
+                  <div class="pk_mem_input_all bg_j">
+                      <input type="text" name="" @click="componentSecondTypef" v-model="componentSecondType" readonly="readonly" placeholder="请选择" />
+                  </div>
+              </div>
+              <button class="search_submit" @click="query">搜索</button>
+          </div>
+        </transition>
+
+
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/CityComponent/cityComponentListResult.js"></script>
+</body>
+
+</html>

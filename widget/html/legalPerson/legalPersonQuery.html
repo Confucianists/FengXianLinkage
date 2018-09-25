@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>企业查询</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <!-- <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../../css/legalPerson/legalPerson.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <!-- <script src="https://unpkg.com/mint-ui/lib/index.js"></script> -->
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/enterpriseInfo/legalPersonQuery.js"></script>
+
+    <!-- 模版 -->
+    <script type="text/x-template" id="item-input">
+      <div class="pk_mem_temp">
+          <div class="pk_mem_lable" >{{titlename}}</div>
+          <div :class="myclass">
+            <slot></slot>
+          </div>
+      </div>
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper" id="list">
+      <!-- <mt-header fixed title="企业查询" style="height:50px;font-size:18px">
+        <mt-button slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+          返回
+        </mt-button>
+        <mt-button  slot="right" @click.native="submit" style="font-size:18px">查询</mt-button>
+      </mt-header> -->
+        <div id="header">
+            <div class="arrow" id="closeWin" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            企业查询
+            <div class="asubmit" id="pkh_add_su" @click="submit">查询</div>
+        </div>
+        <div class="container">
+            <div  class="pk_togger" style="margin-top: 60px;">
+
+              <!-- <mt-field type="text" label="单位名称:" placeholder="请输入" v-model="enterpriseName" >
+              </mt-field>
+              <mt-field type="text" label="组织机构代码:" placeholder="请输入" v-model="organizationCode" >
+              </mt-field>
+              <mt-cell title="单位性质:" is-link @click.native="enterprisePropertiesf" v-model="enterpriseProperties" >
+              </mt-cell> -->
+
+
+              <input-item titlename="单位名称:"  myclass="pk_mem_input_all">
+                  <input type="text"  name="" v-model="enterpriseName" placeholder="请输入" />
+              </input-item>
+              <input-item titlename="组织机构代码:" myclass="pk_mem_input_all">
+                  <input type="text" name="" v-model="organizationCode" placeholder="请输入"/>
+              </input-item>
+              <input-item titlename="单位性质:" myclass="bg_j pk_mem_input">
+                  <input type="text" @click="enterprisePropertiesf" v-model="enterpriseProperties" name="" readonly="readonly" placeholder="请选择"/>
+              </input-item>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

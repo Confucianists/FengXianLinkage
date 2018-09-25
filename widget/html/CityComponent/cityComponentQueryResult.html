@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部件查询结果</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cityComponent/cityComponent.css">
+
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script type="text/javascript" src="../../script/CityComponent/cityComponentResult.js"></script>
+</head>
+<body>
+  <div class="wrapper" id="info">
+    <mt-header fixed title="部件查询结果" style="height:50px;font-size:18px">
+      <mt-button slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+        返回
+      </mt-button>
+    </mt-header>
+      <!-- <div class="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          部件查询结果
+      </div> -->
+      <!--<div  class="container" >
+           <div v-for="(item,index) of items" @click="choose(index)">
+            <div>部件名称: {{item.componentName}}</div>
+            <div>部件状态: {{item.componentStatue}}</div>
+            <div>初始调查时间: {{item.createTime}}</div>
+          </div>
+      </div>-->
+      <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" style="margin-top: 60px;" :auto-fill="true" ref="loadmore" @top-status-change="handleTopChange">
+        <div slot="top" class="mint-loadmore-top">
+            <span v-show="topStatus === 'pull'" :class="{ 'rotate': topStatus === 'drop' }">↓ 下拉刷新</span>
+            <span v-show="topStatus === 'loading'">加载中..</span>
+            <span v-show="topStatus === 'drop'">释放更新</span>
+        </div>
+        <ul  >
+          <li v-for="(item,index) of items" @click="choose(index)">
+            <div>部件名称: {{item.componentName}}</div>
+            <div>部件状态: {{item.componentStatue}}</div>
+            <div>初始调查时间: {{item.createTime}}</div>
+          </li>
+
+        </ul>
+
+      </mt-loadmore>
+  </div>
+
+</body>
+</html>

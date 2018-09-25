@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>新增建筑</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/building/building.css">
+</head>
+
+<body>
+    <div id="list">
+        <div id="header">
+            <div class="arrow" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            <i id="titlename" style="font-style:normal">新增建筑</i>
+            <div class="asubmit" @click="submit" id="pkh_add_su">提交</div>
+        </div>
+        <div class="container" v-cloak>
+            <div class="pk_togger" style="margin-top: 70px;">
+                <building-component buildingtitle="地址:" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="address" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="建筑名称:" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="buildingName" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="楼号类型:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="buildingTypef" v-model="buildingType" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="楼号(号楼):" myclass="pk_mem_input_all">
+                    <input type="number" v-bind:readonly="isClick" v-model="buildingNum" name="" placeholder="请输入" />
+                </building-component>
+                <building-component buildingtitle="地图编号:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="mapNumf" v-model="mapNum" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <!-- <building-component buildingtitle="单元(梯/区):" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="unitf" v-model="unit" readonly="readonly" placeholder="请选择" />
+                </building-component> -->
+
+                <building-component buildingtitle="编辑单元:" myclass="pk_mem_input">
+                    <div class="imap">
+                        <input type="number" v-bind:readonly="isClick" v-model="editUnit" name="" placeholder="请输入" />
+                    </div>
+                    <span>
+                      <input type="text" name="" @click="editUnitf" readonly="readonly" placeholder="请选择"/>
+                  </span>
+                </building-component>
+
+                <building-component buildingtitle="产权人:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="propertyOwnerf" v-model="propertyOwner" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <!-- <building-component buildingtitle="单体楼:" myclass="bg_j pk_mem_input hideclass">
+                    <input type="text" name="" @click="monomerBuildingf" v-model="monomerBuilding" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="房屋来源:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="housingSourcef" v-model="housingSource" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="权属类型:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="ownershipTypef" v-model="ownershipType" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="结构类型:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="structureTypef" v-model="structureType" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="入住类型:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="inTypef" v-model="inType" readonly="readonly" placeholder="请选择" />
+                </building-component> -->
+
+                <building-component buildingtitle="建筑用途:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="constructionApplicationsf" v-model="constructionApplications" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="建筑性质:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="architecturalNaturef" v-model="architecturalNature" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="建筑类型:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="buildingtypesf" v-model="buildingtypes" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="建筑层数(层):" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="buildingStorey" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="建筑高度(米):" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="buildingHeight" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="使用年限(年):" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="durableYears" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="占地面积(平方米):" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="floorArea" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="建筑面积(平方米):" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="coveredArea" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="建筑时间:" myclass="bg_j pk_mem_input">
+                    <input type="text" name="" @click="buildingTimef" v-model="buildingTime" readonly="readonly" placeholder="请选择" />
+                </building-component>
+
+                <building-component buildingtitle="物业管理:" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="manager" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="负责人:" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="userName" placeholder="请输入" />
+                </building-component>
+
+                <building-component buildingtitle="联系电话:" myclass="pk_mem_input_all">
+                    <input type="text" v-bind:readonly="isClick" name="" v-model="contactNumber" placeholder="请输入" />
+                </building-component>
+                <div class="clear"></div>
+                <div class="er_templ" v-for="(expand,index) of expandTab_arr">
+                    <div class="er_templ_in">
+                        <div class="er_lable">{{expand.name}}</div>
+                        <div class="bg_j pk_mem_input">
+                            <input @click="expandselect(index,expand.english_name,expand.name)" v-model="expand.value" readonly="readonly" type="text" name="" placeholder="请选择" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--iframe style="position: absolute;width: 100%;height: 100%;" src="../hotspotSelect.html"></iframe-->
+    <!-- <div id="mapcontainer" style="position: absolute;width: 100%;height: 100%;display:none;">
+        <div id="mapDiv" style="width: 100%;height: 94%;"></div>
+        <div id="submit" style="width: 100%;height: 6%;background-color:white;font-size:18px;text-align:center;">提交</div>
+    </div> -->
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/building/building.js"></script>
+</body>
+<template id="buildingInfo">
+  <div class="er_templ">
+    <div class="er_templ_in">
+      <div class="er_lable">{{buildingtitle}}</div>
+        <div :class="myclass">
+          <slot></slot>
+        </div>
+    </div>
+  </div>
+</template>
+
+</html>

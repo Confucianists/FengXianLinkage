@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../css/currency/main.css">
+		<link rel="stylesheet" href="../../css/event/my_event.css">
+		<script src="../../script/api.js"></script>
+		<script src="../../script/vue.js"></script>
+    <script src="../../script/UICore.js"></script>
+		<script src="../../script/event/eventList.js"></script>
+
+		<title>我发起的</title>
+	</head>
+
+	<body style="background-color:#f2f2f2;">
+		<div id="no_end_all">
+			<eventlist v-for="(myEvent,index) in eventList" :key="index" :eventobj="myEvent" @click.native="eventDetail(myEvent)"></eventlist>
+			<div class="load_all" v-show="showAll">已加载全部</div>
+		</div>
+	</body>
+	<template id="listTemplate">
+		<div class="no_end_list">
+			<div class="no_end_left">{{eventobj.eventTitle}}</div>
+			<div class="no_end_right">
+				<p>{{eventobj.sponsorName}}</p>
+				<p>{{eventobj.reportTime}}</p>
+			</div>
+		</div>
+	</template>
+</html>

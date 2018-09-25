@@ -1,0 +1,202 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>新增法人</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <!-- <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../../css/legalPerson/legalPerson.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <!-- <script src="https://unpkg.com/mint-ui/lib/index.js"></script> -->
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/enterpriseInfo/legalPerson.js"></script>
+
+    <!-- 输入框模版 -->
+    <script type="text/x-template" id="item-input">
+      <div class="er_templ">
+          <div class="er_templ_in">
+            <div class="er_lable" >{{titlename}}</div>
+              <div :class="myclass">
+                <slot></slot>
+              </div>
+          </div>
+      </div>
+    </script>
+
+</head>
+<body>
+
+  <div id="list" >
+    <!-- <mt-header fixed title="新增法人" style="height:50px;font-size:18px">
+      <mt-button id="closeWin" slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+        返回
+      </mt-button>
+      <mt-button id="pkh_add_su" slot="right" @click.native="submit" style="font-size:18px">提交</mt-button>
+    </mt-header> -->
+    <!-- 标题栏 -->
+    <div id="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          <label id="legalTitle"></label>
+        <div class="asubmit" id="pkh_add_su" @click="submit">提交</div>
+    </div>
+
+    <!-- 表单内容 -->
+    <div class="ev_hui_top"></div>
+    <div id="ev_content" v-cloak>
+        <!-- <div  class="pk_togger" style="margin-top: 50px;"> -->
+          <!-- <mt-field type="text" label="单位名称:" placeholder="请输入" v-model="enterpriseName" v-bind:readonly="isClick">
+          </mt-field>
+          <mt-field type="text" label="组织机构代码:" placeholder="请输入" v-model="organizationCode" v-bind:readonly="isClick">
+          </mt-field> -->
+          <input-item titlename="单位名称:" myclass="er_input">
+              <input type="text" v-bind:readonly="isClick"  name="" v-model="enterpriseName" placeholder="请输入" />
+          </input-item>
+          <input-item titlename="组织机构代码:" myclass="er_input">
+              <input type="text" v-bind:readonly="isClick"  name="" v-model="organizationCode" placeholder="请输入" />
+          </input-item>
+          <!-- <mt-field type="text" label="单位性质:" placeholder="请选择" v-model="enterpriseProperties" @click.native="enterprisePropertiesf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="单位类别:" placeholder="请选择" v-model="enterpriseType" @click.native="enterpriseTypef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="所属行业:" placeholder="请选择" v-model="enterpriseIndustry" @click.native="enterpriseIndustryf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="规模:" placeholder="请选择" v-model="enterpriseScale" @click.native="enterpriseScalef" readonly="readonly" :disable-clear="true">
+          </mt-field> -->
+          <input-item titlename="单位性质:" myclass="bg_j er_input_xia">
+              <input type="text" @click="enterprisePropertiesf" v-model="enterpriseProperties" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <input-item titlename="单位类别:" myclass="bg_j er_input_xia">
+              <input type="text" @click="enterpriseTypef" v-model="enterpriseType" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <input-item titlename="所属行业:" myclass="bg_j er_input_xia">
+              <input type="text" @click="enterpriseIndustryf" v-model="enterpriseIndustry" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <input-item titlename="规模:" myclass="bg_j er_input_xia">
+              <input type="text" @click="enterpriseScalef" v-model="enterpriseScale" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <!-- <mt-field type="text" label="注册资金:" placeholder="请输入（保留两位小数）" v-model="registerCapital" v-bind:readonly="isClick">
+            <div style="font-size:16px">万元</div>
+          </mt-field> -->
+          <input-item titlename="注册资金(万元):" myclass="er_input">
+              <div class="binput">
+                <input type="text" v-bind:readonly="isClick"  name="" v-model="registerCapital" placeholder="请输入-保留两位小数" />
+              </div>
+          </input-item>
+          <!-- <mt-field type="text" label="成立日期:" placeholder="请选择" v-model="enterpriseCreateTime" @click.native="enterpriseCreateTimef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="法人:" placeholder="请选择" v-model="legalPerson" @click.native="legalPersonf" readonly="readonly" :disable-clear="true">
+          </mt-field> -->
+          <input-item titlename="成立日期:" myclass="bg_j er_input_xia">
+              <input type="text" @click="enterpriseCreateTimef" v-model="enterpriseCreateTime_computed" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <input-item titlename="法人:" myclass="bg_j er_input_xia">
+              <input type="text" @click="legalPersonf" v-model="legalPerson" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <!-- <mt-field type="text" label="法人代表:" placeholder="请输入" v-model="enterpriseCorporate" v-bind:readonly="isClick">
+          </mt-field> -->
+          <input-item titlename="法人代表:" myclass="er_input">
+              <input type="text" v-bind:readonly="isClick"  name="" v-model="enterpriseCorporate" placeholder="请输入" />
+          </input-item>
+          <!-- <mt-field type="text" label="证件类型:" placeholder="请选择" v-model="certificateType" @click.native="certificateTypef" readonly="readonly" :disable-clear="true">
+          </mt-field> -->
+          <input-item titlename="证件类型:" myclass="bg_j er_input_xia">
+              <input type="text" @click="certificateTypef" v-model="certificateType" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <!-- <mt-field type="text" label="证件号:" placeholder="请输入" v-model="certificateNumber" v-bind:readonly="isClick">
+          </mt-field> -->
+          <input-item titlename="证件号:" myclass="er_input">
+              <input type="text" v-bind:readonly="isClick"  name="" v-model="certificateNumber" placeholder="请输入" />
+          </input-item>
+          <!-- <mt-field type="text" label="文明单位:" placeholder="请选择" v-model="advancedUnit" @click.native="advancedUnitf" readonly="readonly" :disable-clear="true">
+          </mt-field> -->
+          <input-item titlename="文明单位:" myclass="bg_j er_input_xia">
+              <input type="text" @click="advancedUnitf" v-model="advancedUnit" name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <!-- <mt-field type="text" label="单位负责人:" placeholder="请输入" v-model="unitLeader" v-bind:readonly="isClick">
+          </mt-field>
+          <mt-field type="number" label="联系电话:" placeholder="请输入" v-model="unitLeaderPhone" v-bind:readonly="isClick">
+          </mt-field> -->
+          <input-item titlename="单位负责人:" myclass="er_input">
+              <input type="text" v-bind:readonly="isClick"  name="" v-model="unitLeader" placeholder="请输入" />
+          </input-item>
+          <input-item titlename="联系电话:" myclass="er_input">
+              <input type="text" v-bind:readonly="isClick"  name="" v-model="unitLeaderPhone" placeholder="请输入" />
+          </input-item>
+          <div class="clear ev_hui_cen"></div>
+          <!-- 关联建筑 -->
+          <!-- <div class="clear dynamic">关联建筑</div> -->
+          <!-- <mt-field type="text" label="建筑名称:" placeholder="请选择" v-model="buildingName" @click.native="selectBuildingf('legalPerson')" readonly="readonly" :disable-clear="true">
+          </mt-field> -->
+          <input-item titlename="选择房屋:" myclass="bg_j er_input_xia">
+              <input type="text" @click="selectHouse('legalPerson')"  name="" readonly="readonly" placeholder="请选择"/>
+          </input-item>
+          <input-item titlename="建筑名称:" myclass="er_input">
+              <input type="text"  v-model="buildingName" name="" readonly="readonly" />
+          </input-item>
+          <input-item titlename="楼号:" myclass="er_input">
+              <input type="text" readonly="readonly"  name="" v-model="buildingNumber"  />
+          </input-item>
+          <!-- <mt-field type="number" label="楼号:" placeholder="请输入" v-model="buildingNumber" v-bind:readonly="isClick">
+          </mt-field>
+          <mt-field type="number" label="单元/梯:" placeholder="请选择" v-model="buildingUnit" @click.native="buildingUnitf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="number" label="所属楼层:" placeholder="请输入" v-model="belongFloorNum" v-bind:readonly="isClick">
+            <div style="font-size:16px">层</div>
+          </mt-field>
+          <mt-field type="number" label="房号:" placeholder="请输入" v-model="roomNumber" v-bind:readonly="isClick">
+          </mt-field> -->
+          <input-item titlename="单元/梯:" myclass="er_input">
+              <input type="text"  v-model="buildingUnit" name="" readonly="readonly" />
+          </input-item>
+          <input-item titlename="所属楼层(层):" myclass="er_input">
+              <div class="binput">
+                <input type="text" readonly="readonly"   name="" v-model="belongFloorNum" />
+              </div>
+          </input-item>
+          <input-item titlename="房号:" myclass="er_input">
+              <input type="text" readonly="readonly"   name="" v-model="roomNumber"  />
+          </input-item>
+          <!-- <mt-field type="text" label="房屋用途:" placeholder="请选择" v-model="housingUse" @click.native="housingUsef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="实际用途:" placeholder="请选择" v-model="actuallyUse" @click.native="actuallyUsef" readonly="readonly" :disable-clear="true">
+          </mt-field> -->
+          <input-item titlename="房屋用途:" myclass="er_input">
+              <input type="text" v-model="housingUse" name="" readonly="readonly" />
+          </input-item>
+          <input-item titlename="实际用途:" myclass="er_input">
+              <input type="text"  v-model="actuallyUse" name="" readonly="readonly" />
+          </input-item>
+          <input-item titlename="房屋面积(平方米):" myclass="er_input">
+              <div class="binput">
+                <input type="text" readonly="readonly"   name="" v-model="houseArea" />
+              </div>
+          </input-item>
+          <!-- <mt-field type="text" label="房屋面积:" placeholder="请输入（保留两位小数）" v-model="houseArea" v-bind:readonly="isClick">
+            <div style="font-size:16px">平方米</div>
+          </mt-field> -->
+          <div class="clear ev_hui_cen"></div>
+          <!-- 拓展字段 -->
+          <div class="er_templ" v-for="(expand,index) of expandTab_arr">
+            <div class="er_templ_in">
+              <div class="er_lable">{{expand.name}}</div>
+              <div class="bg_j er_input_xia">
+                  <input @click="expandselect(index,expand.english_name,expand.name)" v-model="expand.value" readonly="readonly" type="text" name="" placeholder="请选择" />
+              </div>
+            </div>
+              <!-- <mt-cell style="font-size:16px" is-link @click.native="expandselect(index,expand.english_name,expand.name)" v-model="expand.value">
+                  <div slot="title">{{expand.name}}</div>
+              </mt-cell> -->
+          </div>
+
+        </div>
+  </div>
+
+
+</body>
+
+</html>

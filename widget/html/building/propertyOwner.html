@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>产权人查询</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/building/propertyOwner.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="header">
+            <div class="arrow" id="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            人口查询
+            <div class="asubmit" id="pkh_add_su">查询</div>
+        </div>
+        <div class="container">
+            <div id="list" class="pk_togger" style="margin-top: 60px;">
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">建筑名称:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="buildingName" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">姓 名:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="name" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">身 份 证:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="idcard" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">性 别:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" @click="choose()" readonly="readonly" v-model="sex" placeholder="请选择" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/building/propertyOwner.js"></script>
+</body>
+
+</html>

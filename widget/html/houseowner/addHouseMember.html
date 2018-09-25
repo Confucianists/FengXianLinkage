@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>添加户成员</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/houseowner/houseowner.css">
+</head>
+
+<body>
+    <div id="list">
+        <div id="header">
+            <div class="arrow" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            添加户成员
+            <div class="asubmit" @click="submit" id="pkh_add_su">保存</div>
+        </div>
+        <div class="container" v-cloak>
+            <div class="pk_togger" style="margin-top: 70px;">
+              <population-component houseownertitle="查询" myclass="pk_mem_input_all">
+                  <input slot="myele" type="text" @click="searchf" readonly="readonly" name="" placeholder="请选择" />
+              </population-component>
+                <population-component houseownertitle="姓名:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="name" placeholder="请输入" />
+                </population-component>
+
+                <population-component houseownertitle="身份证号:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="identity" placeholder="请输入" />
+                </population-component>
+
+                <population-component houseownertitle="性别:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="sexf" v-model="sex" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="出生日期:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="birthdayf" v-model="birthday" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="户成员关系:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="relationshipf" v-model="relationship" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="民族:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="nationf" v-model="nation" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="政治面貌:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="politicsf" v-model="politics" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="宗教信仰:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="religionf" v-model="religion" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="文化程度:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="degreef" v-model="degree" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="婚姻状况:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="maritalStatusf" v-model="maritalStatus" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="社会任职:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="socialOfficef" v-model="socialOffice" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="户口性质:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="registTypef" v-model="registType" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="户 籍 省:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="provincef" v-model="province" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="户 籍 市:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="cityf" v-model="city" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="户籍区/县:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="countyf" v-model="county" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="户籍详址:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="registerAddress" placeholder="请输入" />
+                </population-component>
+
+                <population-component houseownertitle="现居地址:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="address" placeholder="请输入" />
+                </population-component>
+
+                <population-component houseownertitle="固定电话:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="telephone" placeholder="请输入" />
+                </population-component>
+
+                <population-component houseownertitle="手机号码:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="cellphone" placeholder="请输入" />
+                </population-component>
+
+                <population-component houseownertitle="其他联系方法:" myclass="bg_j pk_mem_input">
+                    <input slot="myele" type="text" name="" @click="contactMethodf" v-model="contactMethod" readonly="readonly" placeholder="请选择" />
+                </population-component>
+
+                <population-component houseownertitle="其他联系方式:" myclass="pk_mem_input_all">
+                    <input slot="myele" type="text" v-bind:readonly="isClick" name="" v-model="contactWay" placeholder="请输入" />
+                </population-component>
+                <div class="clear dynamic"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/houseowner/addHouseMember.js"></script>
+</body>
+<template id="houseownerInfo">
+  <div class="er_templ">
+    <div class="er_templ_in">
+        <div class="er_lable">{{houseownertitle}}</div>
+        <div :class="myclass">
+              <slot name="myele"></slot>
+        </div>
+    </div>
+  </div>
+
+</template>
+
+</html>

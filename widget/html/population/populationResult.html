@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>人口查询列表</title>
+    <link rel="stylesheet" href="../../css/population/populationResult.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header"></div>
+        <div id="infos" class="container">
+            <div v-for="(item,index) in items" @click="choosePersoal(index)">
+              <div>{{item.name}}</div>
+              <div>{{item.sex}}</div>
+              <div>{{item.idNumber}}</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/population/populationResult.js"></script>
+</body>
+
+</html>

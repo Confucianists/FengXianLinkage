@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="../../css/currency/main.css">
+  <link rel="stylesheet" href="../../css/event/event_report.css">
+  <script src="../../script/api.js"></script>
+  <script src="../../script/vue.js"></script>
+  <script src="../../script/UICore.js"></script>
+  <script src="../../script/emergencyEvent/event_report.js"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/js/coordtransform.js"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/OMAP-source.js"></script>
+  <script type="text/javascript" src="../../script/baiduToWgs84.js"></script>
+  <script type="text/x-template" id="item-element">
+    <div class="er_templ">
+      <div class="er_templ_in">
+        <div class="er_lable">{{param}}</div>
+        <div :class="myclass">
+          <slot name="myele"></slot>
+        </div>
+      </div>
+    </div>
+  </script>
+  <script type="text/x-template" id="attach-template">
+    <div>
+			<div class="ev_pls_all">
+				<div class="ev_photo_all">
+					<div class="ev_hui_cen"></div>
+						<div class="ev_pls" @click="showItem('photo')">
+							<label>照片</label><div class="ev_pls_img photo"></div>
+						</div>
+					<div class="ev_atlas" id="imgAdd">
+							<div class="ev_atlas_one" v-for="(imgpath,index) in imgarray.imgpaths" >
+								<img src="../../image/icon_del.png" @click="deleteImg(imgpath,imgarray.imgnum)" />
+								<img @click="openImg(imgpath);" :src="imgpath" />
+							</div>
+					</div>
+				</div>
+				<div class="ev_photo_all">
+					<div class="ev_hui_cen"></div>
+						<div class="ev_pls" @click="showItem('video')">
+							<label>视频</label><div class="ev_pls_img video"></div>
+						</div>
+						<div class="ev_videos" id="videoAdd">
+							<div class="ev_videos_one" v-for="(videopath,index) in imgarray.videopaths" >
+								<img src="../../image/icon_del.png" @click="deleteVideo(videopath,imgarray.videonum)" />
+								<img @click="openVideo(videopath);" src="../../image/video.jpg" />
+							</div>
+						</div>
+				</div>
+			</div>
+			<div class="hideBg" v-show="myshow.bgshow" @click="closeItem();"></div>
+			<div class="tele-item white-bg">
+				<ul id="img_video" v-show="myshow.camerashow">
+					<li @click="camera_img();"><a href="javascript:void(0);">拍照</a></li>
+					<li @click="getImg();"><a href="javascript:void(0);">从本地选择</a></li>
+					<li class="cancelli" @click="closeItem();"><a href="javascript:void(0);">取消</a></li>
+				</ul>
+				<ul id="img_video" v-show="myshow.videoshow">
+					<li @click="camera_video();"><a href="javascript:void(0);">视频</a></li>
+					<li @click="getVideo();"><a href="javascript:void(0);">从本地选择</a></li>
+					<li class="cancelli" @click="closeItem();"><a href="javascript:void(0);">取消</a></li>
+				</ul>
+			</div>
+		</div>
+	</script>
+  <title>应急事件上报</title>
+</head>
+
+<body style="background-color:#f2f2f2;">
+  <div id="app" refs="app">
+    <div id="header">
+      <div class="arrow" id="closeWin" @click="closeWin">
+        <img src="../../image/return.png" alt="">
+      </div>
+      <div class="zline"></div>
+      应急上报
+    </div>
+
+    <div v-cloak>
+      <div class="ev_hui_top"></div>
+      <div id="ev_content">
+        <myelement myclass="er_input" param="应急事件标题">
+          <input slot="myele" v-model="f.title" type="text" name="" id="" placeholder="请输入-必填">
+        </myelement>
+        <myelement myclass="er_input" param="应急事件等级">
+          <input slot="myele" v-model="f.eventGradeName" @click="openSelectEmergencyLevel()" type="text" readonly placeholder="请选择-必填">
+        </myelement>
+        <myelement myclass="er_input" param="需要通知的部门">
+          <input slot="myele" @click="openCheckBoxDepartments()" v-model="f.noticeDepartmentStr" type="text" readonly placeholder="请选择-必填">
+        </myelement>
+        <myelement myclass="er_input" param="是否进行短信推送">
+          <input slot="myele" @click="openSelectMessage()" v-model="f.msgStr" type="text" readonly placeholder="请选择-必填">
+        </myelement>
+        <myelement myclass="er_input" param="事件发生日期">
+          <input slot="myele" v-model="f.date" @click="openEmergencyTime('date')" type="text" name="" readonly placeholder="请输入-必填">
+        </myelement>
+        <myelement myclass="er_input" param="事件发生时间">
+          <input slot="myele" v-model="f.time" @click="openEmergencyTime('time')" type="text" name="" readonly placeholder="请输入-必填">
+        </myelement>
+        <!-- <myelement param="事件发生坐标" myclass="er_input">
+          <input slot="myele" v-model="f.xy" @click="openEmergencyMap()" type="text" readonly placeholder="请输入-必填">
+        </myelement> -->
+        <myelement param="事件发生地址" myclass="er_input">
+          <input slot="myele" v-model="f.eventHappenAddress" type="text" />
+        </myelement>
+        <myelement param="结束后是否公示" myclass="er_input">
+          <input slot="myele" v-model="f.endShowStr" @click="openSelectEndShow()" readonly type="text" placeholder="请选择-必填" />
+        </myelement>
+        <myelement myclass="er_textarea" param="应急事件内容">
+          <textarea slot="myele" v-model="f.content" placeholder="请输入-必填"></textarea>
+        </myelement>
+        <attach-comp :myshow="show" :imgarray="imgarr"></attach-comp>
+        <button class="ev_upbut" @click="subButtonClick">提交</button>
+      </div>
+
+      <!--部门弹框下拉列表定义-->
+      <div class="tcmodel" id="ev_dep_list" v-show="false">
+        <ul>
+          <li>
+            <label>建议受理部门 </label>
+            <font class="radioc">(单选)</font>
+          </li>
+          <li>
+            <label>农业局</label>
+            <input type="radio" name="" value="" class="radioc" checked="checked" />
+          </li>
+          <li>
+            <label>人社局</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>国土局(移民办)</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>教育局</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>民政局</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" onclick="dep_no_choose()">取消</div>
+          <div class="confirm_left" onclick="">确定</div>
+        </div>
+      </div>
+      <!--紧急程度下拉列表定义-->
+      <div class="tcmodel" id="ev_jjcd_list" v-show="false">
+        <ul>
+          <li>
+            <label>紧急程度 </label>
+            <font class="radioc">(单选)</font>
+          </li>
+          <li>
+            <label>一般</label>
+            <input type="radio" name="" value="" class="radioc" checked="checked" />
+          </li>
+          <li>
+            <label>紧急</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>特急</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" onclick="jc_no_choose()">取消</div>
+          <div class="confirm_left" onclick="">确定</div>
+        </div>
+      </div>
+      <!--提交意见以及执行人定义-->
+      <div class="tcmodel" id="ev_ophandler" v-show="show.submitDiv">
+        <ul>
+          <li>
+            <label>提交 </label>
+          </li>
+          <li>
+            <div class="ev_in_opinion">
+              <label class="ev_oplab" style="margin-left: 0px;">意见</label>
+              <textarea id="zxryj" placeholder="请在此处填写意见"></textarea>
+            </div>
+          </li>
+          <li>
+            <div class="ev_in_handler bg_j" @click="nextExecutorClick">
+              <label class="ev_halab" style="margin-left: 0px;">选择下一步执行人</label>
+              <input type="text" name="" id="" readonly="readonly" placeholder="请选择" />
+            </div>
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" @click="closeSubmitDiv()">取消</div>
+          <!-- <div class="confirm_left" onclick="">确定</div> -->
+        </div>
+      </div>
+      <!--请选择下一执行步骤-->
+      <div class="tcmodel" id="ev_next_step" v-show="show.ev_next_step">
+        <ul id="nodeUl">
+          <li>
+            <label>请选择下一执行步骤 </label>
+          </li>
+          <li @click="selectPerson(step.activityId,step.doSelectType)" v-for="step in steps">
+            <label>{{step.convertName}}</label>
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" @click="closeSubmitDiv()">取消</div>
+          <!-- <div class="confirm_left" onclick="">确定</div> -->
+        </div>
+      </div>
+      <!--遮罩层定义-->
+      <div class="zcover" v-show="show.zcover"></div>
+    </div>
+  </div>
+</body>
+
+</html>

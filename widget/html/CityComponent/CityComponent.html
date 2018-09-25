@@ -1,0 +1,236 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增部件</title>
+    <!-- <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/cityComponent/cityComponent.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <!-- <script src="https://unpkg.com/mint-ui/lib/index.js"></script> -->
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/mapUtil.js"></script>
+    <script type="text/javascript" src="../../script/CityComponent/test.js"></script>
+
+    <script type="text/x-template" id="item-element">
+      <div class="er_templ">
+        <div class="er_templ_in">
+          <div class="er_lable" >{{titlename}}</div>
+          <div :class="myclass">
+            <slot></slot>
+          </div>
+        </div>
+      </div>
+    </script>
+    <template id="attach-template">
+      <div>
+      <div class="ev_pls_all">
+        <div class="ev_photo_all">
+          <div class="ev_hui_cen"></div>
+            <div class="ev_pls" @click="showItem('photo')">
+              <label>照片</label><div class="ev_pls_img photo"></div>
+            </div>
+          <div class="ev_atlas" id="imgAdd">
+              <div class="ev_atlas_one" v-for="(imgpath,index) in imgarray.imgpaths" >
+                <img src="../../image/icon_del.png" @click="deleteImg(imgpath,imgarray.imgnum)" />
+                <img @click="openImg(imgpath);" :src="imgpath" />
+              </div>
+          </div>
+        </div>
+        <!-- <div class="ev_photo_all">
+          <div class="ev_hui_cen"></div>
+            <div class="ev_pls" @click="showItem('video')">
+              <label>视频</label><div class="ev_pls_img video"></div>
+            </div>
+            <div class="ev_videos" id="videoAdd">
+              <div class="ev_videos_one" v-for="(videopath,index) in imgarray.videopaths" >
+                <img src="../../image/icon_del.png" @click="deleteVideo(videopath,imgarray.videonum)" />
+                <img @click="openVideo(videopath);" src="../../image/video.jpg" />
+              </div>
+            </div>
+        </div> -->
+      </div>
+      <div class="hideBg" v-show="myshow.bgshow" @click="closeItem"></div>
+      <div class="tele-item white-bg">
+        <ul id="img_video" v-show="myshow.camerashow">
+          <li @click="camera_img();"><a href="javascript:void(0);">拍照</a></li>
+          <li @click="getImg();"><a href="javascript:void(0);">从本地选择</a></li>
+          <li class="cancelli" @click="closeItem();"><a href="javascript:void(0);">取消</a></li>
+        </ul>
+        <ul id="img_video" v-show="myshow.videoshow">
+          <li @click="camera_video();"><a href="javascript:void(0);">视频</a></li>
+          <li @click="getVideo();"><a href="javascript:void(0);">从本地选择</a></li>
+          <li class="cancelli" @click="closeItem();"><a href="javascript:void(0);">取消</a></li>
+        </ul>
+      </div>
+      </div>
+    </template>
+</head>
+<body>
+  <div id="list">
+    <!-- 标题栏 -->
+    <div id="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          新增部件
+        <div class="asubmit" id="pkh_add_su" @click="submit">提交</div>
+    </div>
+    <!-- <mt-header fixed title="新增部件" style="height:50px;font-size:18px">
+      <mt-button id="closeWin" slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+        返回
+      </mt-button>
+      <mt-button id="pkh_add_su" slot="right" @click.native="submit" style="font-size:18px">提交</mt-button>
+    </mt-header> -->
+
+    <!-- 表单内容 -->
+    <div class="ev_hui_top"></div>
+    <div id="ev_content" v-cloak>
+
+          <form-item titlename="部件名称:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick" name="" v-model="componentName" placeholder="请输入" />
+          </form-item>
+          <form-item titlename="部件编码:" myclass="er_input">
+          <input type="text" v-bind:readonly="isClick" name="" v-model="componentCode" placeholder="请输入" />
+          </form-item>
+          <!-- <mt-field type="text" label="部件名称:" placeholder="请输入" v-model="componentName" v-bind:readonly="isClick">
+          </mt-field>
+          <mt-field type="text" label="部件编码:" placeholder="请输入" v-model="componentCode" v-bind:readonly="isClick">
+          </mt-field>
+          <mt-field type="text" label="部件类型:" placeholder="请选择" v-model="componentType" @click.native="componentTypef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="部件子类型:" placeholder="请选择" v-model="componentSecondType" @click.native="componentSecondTypef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="初始调查时间:" placeholder="请选择" v-model="initialInvestigationTime" @click.native="componentCreateTimef"  :disable-clear="true"  readonly="readonly"  >
+          </mt-field>
+          <mt-field type="text" label="变更调查时间:" placeholder="请选择" v-model="changeInvestigationTime" @click.native="componentUpdateTimef" :disable-clear="true"  readonly="readonly"  >
+          </mt-field>
+          <mt-field type="text" label="部件状态:" placeholder="请选择" v-model="componentStatus" @click.native="componentStatusf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="网格编号:" placeholder="请输入" v-model="componentGirdCode" v-bind:readonly="isClick" readonly="readonly">
+          </mt-field>
+          <mt-field type="text" label="主管部门:" placeholder="请选择" v-model="chargeDeparment" @click.native="chargeDeparmentf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="部门编号:" placeholder="请输入" v-model="chargeDeparmentCode" v-bind:readonly="isClick" >
+          </mt-field>
+          <mt-field type="text" label="权属单位:" placeholder="请选择" v-model="ownershipUnit" @click.native="ownershipUnitf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="权属单位编码:" placeholder="请输入" v-model="ownershipUnitCode" v-bind:readonly="isClick" >
+          </mt-field>
+          <mt-field type="text" label="维护单位:" placeholder="请选择" v-model="maintenanceUnit" @click.native="maintenanceUnitf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="维护单位编码:" placeholder="请输入" v-model="maintenanceUnitCode" v-bind:readonly="isClick" >
+          </mt-field>
+          <mt-field type="text" label="维护人员:" placeholder="请选择" v-model="maintenancePerson" @click.native="selectMaintenancePerson" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="维护人电话:" placeholder="请输入" v-model="maintenancePersonPhone" v-bind:readonly="isClick" >
+          </mt-field>
+          <mt-field type="text" label="维护类型:" placeholder="请选择" v-model="maintenanceType" @click.native="maintenanceTypef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="维护方式:" placeholder="请选择" v-model="maintenanceWay" @click.native="maintenanceWayf" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="维护时间:" placeholder="请选择" v-model="maintenanceTime" @click.native="maintenanceTimef" readonly="readonly" :disable-clear="true">
+          </mt-field>
+          <mt-field type="text" label="定位坐标:"  v-model="locationGPS" readonly="readonly" >
+          </mt-field>
+          <mt-field type="textarea" rows="4" label="备注:" placeholder="请输入备注信息" v-model="remark" v-bind:readonly="isClick" >
+          </mt-field> -->
+
+          <form-item titlename="部件类型:" myclass="er_input_xia bg_j">
+            <input type="text" @click="componentTypef" name="" v-model="componentType" placeholder="请选择" readonly="readonly" />
+          </form-item>
+          <form-item titlename="部件子类型:" myclass="bg_j er_input_xia">
+            <input type="text" @click="componentSecondTypef" name="" v-model="componentSecondType" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="初始调查时间:" myclass="bg_j er_input_xia">
+            <input type="text" @click="componentCreateTimef" name="" v-model="initialInvestigationTime_computed" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="变更调查时间:" myclass="bg_j er_input_xia">
+            <input type="text" @click="componentUpdateTimef" name="" v-model="changeInvestigationTime_computed" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="部件状态:" myclass="bg_j er_input_xia">
+            <input type="text" @click="componentStatusf" name="" v-model="componentStatus" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="网格编号:" myclass="er_input">
+            <input type="text" readonly="true" name="" v-model="componentGirdCode" placeholder="请输入" />
+          </form-item>
+          <form-item titlename="主管部门:" myclass="bg_j er_input_xia">
+            <input type="text" @click="chargeDeparmentf" name="" v-model="chargeDeparment" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <!-- <form-item titlename="部门编号:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick" name="" v-model="chargeDeparmentCode" placeholder="请输入" />
+          </form-item> -->
+          <form-item titlename="权属单位:" myclass="bg_j er_input_xia">
+            <input type="text" @click="ownershipUnitf" name="" v-model="ownershipUnit" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <!-- <form-item titlename="权属单位编码:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick" name="" v-model="ownershipUnitCode" placeholder="请输入" />
+          </form-item> -->
+          <form-item titlename="维护单位:" myclass="bg_j er_input_xia">
+            <input type="text" @click="maintenanceUnitf" name="" v-model="maintenanceUnit" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <!-- <form-item titlename="维护单位编码:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick" name="" v-model="maintenanceUnitCode" placeholder="请输入" />
+          </form-item> -->
+          <form-item titlename="维护人员:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick" name=""  v-model="maintenancePerson" placeholder="请输入"/>
+          </form-item>
+          <form-item titlename="维护人电话:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick" name=""  v-model="maintenancePersonPhone" placeholder="请输入" />
+          </form-item>
+          <form-item titlename="维护类型:" myclass="bg_j er_input_xia">
+            <input type="text" @click="maintenanceTypef" name="" v-model="maintenanceType" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="维护方式:" myclass="bg_j er_input_xia">
+            <input type="text" @click="maintenanceWayf" name="" v-model="maintenanceWay" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="维护时间:" myclass="bg_j er_input_xia">
+            <input type="text" @click="maintenanceTimef" name="" v-model="maintenanceTime_computed" placeholder="请选择" readonly="readonly"/>
+          </form-item>
+          <form-item titlename="定位坐标:" myclass="er_input">
+            <input type="text" readonly="true"  name=""  v-model="locationGPS"/>
+          </form-item>
+          <form-item titlename="备注:" myclass="er_input">
+            <input type="text" v-bind:readonly="isClick"  name=""  v-model="remark" placeholder="请输入"/>
+          </form-item>
+
+          <attach-comp  :myshow="show" :imgarray="imgarr"></attach-comp>
+          <!-- <div id="ev_pls_all">
+    				<div class="ev_photo_all">
+    					<div class="ev_hui_cen"></div>
+    					<div class="ev_pls"   @click="showItem('img')">
+    						<label>照片</label>
+    						<div class="ev_pls_img photo"></div>
+    					</div>
+    					<div class="ev_atlas" id="imgAdd"></div>
+    				</div>
+    			</div> -->
+          <!-- <div id="ev_pls_all">
+    				<div class="ev_photo_all">
+    					<mt-cell title="照片"  @click.native="showItem('img')" is-link>
+    					  <div class="ev_pls_img photo"></div>
+    					</mt-cell>
+    					<div class="ev_atlas" id="imgAdd"></div>
+    				</div>
+    			</div> -->
+
+          <!-- 灰色遮罩层 -->
+          <!-- <div class="hideBg" @click="hideItem"></div>
+          <div class="tele-item white-bg" style="display:none">
+            <ul id="img_video">
+              <li class="cameraImg" @click="cameraImg"><a href="javascript:void(0);">拍照</a></li>
+              <li class="localImg" @click="localImg"><a href="javascript:void(0);">从相册选择</a></li>
+              <li class="cancelli" @click="cancelli"><a href="javascript:void(0);">取消</a></li>
+            </ul>
+          </div> -->
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
