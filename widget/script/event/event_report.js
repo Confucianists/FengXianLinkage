@@ -118,7 +118,7 @@ window.apiready = function () {
                     _self.locationKey = data[column].column_key;
                   }
                   // 事件来源
-                  if (data[column].column_name == "事件来源") {
+                  if (data[column].english_name == "EventSources") {
                     data[column].default_value = 1;
                   }
                   //var json = {default_value:data[column].default_value,is_not_null:data[column].is_not_null}
@@ -288,7 +288,7 @@ window.apiready = function () {
           for (var formkey in this.formdata) {
             if (mykey == this.formdata[formkey].column_key) {
               if (this.formdata[formkey].is_not_null == true && this.alltag[mykey] == "" && this.formdata[formkey].column_label != "file") {
-                alert("有必填项没有填写");
+                alert("有必填项（"+this.formdata[formkey].column_name+"）没有填写");
                 return false;
               }
             }
@@ -601,7 +601,7 @@ window.apiready = function () {
         if (this.imgarr.imgpaths.length > 0) {
           UICore.showLoading('上传附件中...', '稍等...');
           api.ajax({
-            url: UICore.serviceUrl + 'mobile/mobileWf.shtml?act=uploadAttach_HZ&loginId=' + this.accountId + '&workId=' + this.alltag.wf_flowInstanceId + '&nodeId=' + this.alltag.wf_activityId,
+            url: UICore.serviceUrl + 'mobile/mobileWf.shtml?act=uploadAttach_HZ&loginId=' + this.accountId+'&accountId=' +this.accountId + '&workId=' + this.alltag.wf_flowInstanceId + '&nodeId=' + this.alltag.wf_activityId,
             method: 'post',
             tag: 'grid',
             data: {

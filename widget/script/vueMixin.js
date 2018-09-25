@@ -325,7 +325,7 @@ var upload = {
       if (this.imgarray.imgpaths.length > 0) {
         UICore.showLoading('上传附件中...', '稍等...');
         api.ajax({
-          url: UICore.serviceUrl + 'mobile/mobileWf.shtml?act=uploadAttach_HZ&loginId=' + this.accountId + '&workId=' + this.alltag.flowInstanceId + '&nodeId=' + this.alltag.activityId,
+          url: UICore.serviceUrl + 'mobile/mobileWf.shtml?act=uploadAttach_HZ&loginId=' + this.accountId+'&accountId=' +this.accountId + '&workId=' + this.alltag.flowInstanceId + '&nodeId=' + this.alltag.activityId,
           method: 'post',
           tag: 'grid',
           data: {

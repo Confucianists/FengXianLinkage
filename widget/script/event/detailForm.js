@@ -18,9 +18,9 @@ window.apiready=function(){
     },
     methods:{
       getForm:function(){
-        console.log(UICore.serviceUrl+'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId='+this.accountId+'&workId=' + this.workId);
+        console.log(UICore.serviceUrl+'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId=' + this.accountId+'&accountId=' +this.accountId+'&workId=' + this.workId);
         api.ajax({
-          url : UICore.serviceUrl+'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId='+this.accountId+'&workId=' + this.workId,
+          url : UICore.serviceUrl+'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId=' + this.accountId+'&accountId=' +this.accountId+'&workId=' + this.workId,
           tag : 'grid',
           method : 'get'
         }, function(ret, err) {

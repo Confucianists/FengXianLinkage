@@ -556,7 +556,7 @@ window.apiready = function () {
         if (imgpaths.length > 0) {
           UICore.showLoading('上传附件中...', '稍等...');
           api.ajax({
-            url: UICore.serviceUrl + 'pc_mobile/emergency_event/emergency_upload_attach?act=uploadAttach_HZ&loginId=' + this.accountId + '&accountName=' + this.f.eventUpPersonName + '&workId=' + this.alltag.flowInstanceId + '&nodeId=' + this.alltag.activityId,
+            url: UICore.serviceUrl + 'pc_mobile/emergency_event/emergency_upload_attach?act=uploadAttach_HZ&loginId=' + this.accountId+'&accountId=' +this.accountId + '&accountName=' + this.f.eventUpPersonName + '&workId=' + this.alltag.flowInstanceId + '&nodeId=' + this.alltag.activityId,
             method: 'post',
             tag: 'grid',
             data: {

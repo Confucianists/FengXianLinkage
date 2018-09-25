@@ -38,9 +38,9 @@ window.apiready=function(){
         loadList:function(){
           var url = "";
           if(this.eventType=="notEnd"){
-            url = UICore.serviceUrl+'mobile/mobileWf.shtml?act=notEndEventList_HZ&loginId='+this.accountId+'&page='+this.page+'&rows='+this.rows+this.searchParam
+            url = UICore.serviceUrl+'mobile/mobileWf.shtml?act=notEndEventList_HZ&loginId=' + this.accountId+'&accountId=' +this.accountId+'&page='+this.page+'&rows='+this.rows+this.searchParam
           }else{
-            url = UICore.serviceUrl+'mobile/mobileWf.shtml?act=endEventList_HZ&loginId='+this.accountId+'&page='+this.page+'&rows='+this.rows+this.searchParam
+            url = UICore.serviceUrl+'mobile/mobileWf.shtml?act=endEventList_HZ&loginId=' + this.accountId+'&accountId=' +this.accountId+'&page='+this.page+'&rows='+this.rows+this.searchParam
           }
           console.log(url);
           api.ajax({

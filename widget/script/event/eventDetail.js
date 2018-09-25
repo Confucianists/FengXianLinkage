@@ -100,9 +100,9 @@ window.apiready = function () {
 
       },
       getForm: function () {
-        console.log(UICore.serviceUrl + 'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId=' + this.accountId + '&workId=' + this.id);
+        console.log(UICore.serviceUrl + 'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId=' + this.accountId+'&accountId=' +this.accountId + '&workId=' + this.id);
         api.ajax({
-          url: UICore.serviceUrl + 'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId=' + this.accountId + '&workId=' + this.id,
+          url: UICore.serviceUrl + 'mobile/mobileWf.shtml?act=editEvent_HZ&state=VIEW&loginId=' + this.accountId+'&accountId=' +this.accountId + '&workId=' + this.id,
           tag: 'grid',
           method: 'get'
         }, function (ret, err) {
