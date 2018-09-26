@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>城市部件</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <!-- <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../../css/cityComponent/cityComponent.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <!-- <script src="https://unpkg.com/mint-ui/lib/index.js"></script> -->
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/CityComponent/cityComponentMain.js"></script>
+
+    <script type="text/x-template" id="item-element">
+      <div class="pk_mem_temp">
+          <div class="pk_mem_lable lab_size" >{{actioname}}</div>
+          <div :class="myclass">
+            <slot></slot>
+          </div>
+      </div>
+    </script>
+
+</head>
+
+
+<body>
+    <div class="wrapper" id="list">
+        <!-- <mt-header fixed title="城市部件" style="height:50px;font-size:18px">
+
+          <mt-button slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+            返回
+          </mt-button>
+        </mt-header> -->
+        <div id="header">
+            <div class="arrow" id="closeWin" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            城市部件
+        </div>
+        <div class="container">
+            <div  class="pk_togger" style="margin-top: 60px;">
+
+              <!-- <mt-cell title="新增部件" is-link @click.native="create"></mt-cell>
+              <mt-cell title="查询部件" is-link @click.native="query"></mt-cell> -->
+
+              <main-item actioname="新增部件" @click.native="create" myclass="bg_j pk_mem_input inp_size">
+                  <input type="text"  name="" readonly="readonly" />
+              </main-item>
+              <main-item actioname="查询部件" @click.native="query" myclass="bg_j pk_mem_input inp_size">
+                  <input type="text"  name="" readonly="readonly"/>
+              </main-item>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

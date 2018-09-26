@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../css/currency/main.css">
+		<link rel="stylesheet" href="../../css/event/choose_person.css">
+		<script src="../../script/api.js"></script>
+		<script src="../../script/vue.js"></script>
+    <script src="../../script/UICore.js"></script>
+		<script src="../../script/event/choose_person.js"></script>
+
+		<title>选择人员</title>
+	</head>
+	<body style="background-color:#f2f2f2;">
+		<div id="app">
+			<header-comp></header-comp>
+			<div class="ev_hui_top"></div>
+			<div id="choose_drs">
+				<label class="p_blable">选择相关的部门、角色等:<br></label>
+				<div class="drs_all">
+					<ul>
+						<!-- <li>
+							<div class="drs_oneimg"><img src="../../img/1.png" /></div>
+							<label>开发部</label>
+						</li>
+						<li>
+							<div class="drs_oneimg"><img src="../../img/1.png" /></div>
+							<label>市场部</label>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div id="choose_pers">
+				<label class="p_blable">选择人员:<br></label>
+				<div class="pers_all">
+					<ul id="personUl">
+						<li v-for="person in personList" @click="personClick(person.id,person.name)">
+							<div class="per_oneimg"><img src="../../image/1.png" /></div>
+							<label>{{person.name}}</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

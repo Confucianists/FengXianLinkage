@@ -1,0 +1,46 @@
+body{
+	background-color: #F6F6F6;
+}
+.mec_content{
+	width: 100%;
+	height: auto;
+	float: left;
+	border: 0px solid blue;
+}
+.temp_my{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 10px;
+	background-color: white;
+}
+.temp_my label{
+	margin-left: 15px;
+	font-size: 15px;
+}
+.temp_cur{
+	width: 100%;
+	height: 50px;
+	font-size: 14px;
+	border-bottom: 1px solid #CDCDCD;
+	background-color: white;
+}
+.me_small_img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-left: 15px;
+	margin-top: 11px;
+}
+.me_small_img img{
+	width: 25px;
+	height: 25px;
+}
+.me_cata_wen{
+	width: 75%;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	margin-left: 15px;
+	margin-top: 10px;
+}

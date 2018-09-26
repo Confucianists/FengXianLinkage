@@ -1,0 +1,82 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #EFEFEF;
+}
+.ev_hui_top{
+	width: 100%;
+	height: 5px;
+	margin-top:60px;
+	background-color: #EFEFEF;
+}
+.ev_hui_cen{
+	width: 100%;
+	height: 8px;
+	background-color: #EFEFEF;
+}
+#ev_content{
+	width: 100%;
+	height: auto;
+	float: left;
+	background-color: white;
+	border: 0px solid red;
+}
+.er_templ{
+	width: 100%;
+  height: 40px;
+	margin: 0 auto;
+	float: left;
+	border-bottom: 1px solid #CDCDCD;
+}
+.er_templ_in{
+	width: 85%;
+	height: auto;
+	float: left;
+	margin: 9px 10px 0px 50px;
+	border: 0px solid red;
+}
+.er_lable{
+	width: 85%;
+	min-height: 20px;
+  line-height: 20px;
+	float: left;
+	border: 0px solid red;
+}
+
+.pk_togger{
+	width: 100%;
+	height: auto;
+	float: left;
+	margin-bottom: 0px;
+	background-color: white;
+	border: 0px solid red;
+}
+.title_g{
+	width: 100%;
+	height: 45px;
+	float: left;
+	font-size: 14px;
+	line-height: 45px;
+	text-align: left;
+	text-indent:2.5em;
+	border-bottom: 1px solid #CDCDCD;
+}
+.bg_hide{
+	/*拆开写  是为了   兼容低版本的系统*/
+	/*background: url(../../img/currency/arrow_right.png) no-repeat left 10px top 10px;*/
+	background-image: url(../../image/event/arrow_right.png);
+	background-repeat: no-repeat;
+	background-position: 15px 15px;
+	background-size: 13px;
+}
+.show_hide{
+	/*background: url(../../img/currency/arrow_down.png) no-repeat left 10px top 10px;*/
+	background-image: url(../../img/event/arrow_down.png);
+	background-repeat: no-repeat;
+	background-position: 15px 15px;
+	background-size: 13px;
+}

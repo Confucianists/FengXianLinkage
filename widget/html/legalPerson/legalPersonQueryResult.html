@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>企业查询结果</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <!-- <link href="https://unpkg.com/mint-ui/lib/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../../css/legalPerson/legalPersonResult.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <!-- <script src="https://unpkg.com/mint-ui/lib/index.js"></script> -->
+    <script type="text/javascript" src="../../script/enterpriseInfo/legalPersonResult.js"></script>
+
+
+</head>
+<body>
+  <div class="wrapper" id="info">
+      <!-- <mt-header fixed title="企业查询结果" style="height:50px;font-size:18px">
+        <mt-button slot="left" icon="back" size="large" @click.native="closeWin" style="font-size:16px;text-align:left" >
+          返回
+        </mt-button>
+      </mt-header> -->
+      <div class="header">
+        <div class="arrow" id="closeWin" @click="closeWin">
+            <img src="../../image/return.png" alt="">
+        </div>
+        <div class="zline"></div>
+          企业查询结果
+      </div>
+      <div  class="container">
+          <div v-for="(item,index) of items" @click="choose(index)">
+            <div>单位： {{item.unitName}}</div>
+            <div>机构代码： {{item.organizationCode}}</div>
+            <div>单位性质： {{item.unitProperties}}</div>
+          </div>
+      </div>
+      <!-- <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" style="margin-top: 50px;" :auto-fill="true" ref="loadmore" @top-status-change="handleTopChange">
+        <div slot="top" class="mint-loadmore-top">
+            <span v-show="topStatus === 'pull'" :class="{ 'rotate': topStatus === 'drop' }">↓ 下拉刷新</span>
+            <span v-show="topStatus === 'loading'">加载中..</span>
+            <span v-show="topStatus === 'drop'">释放更新</span>
+        </div>
+        <ul  >
+          <li v-for="(item,index) of items" @click="choose(index)">
+            <div>单位： {{item.unitName}}</div>
+            <div>机构代码： {{item.organizationCode}}</div>
+            <div>单位性质： {{item.unitProperties}}</div>
+          </li>
+
+        </ul>
+      </mt-loadmore> -->
+  </div>
+
+</body>
+</html>

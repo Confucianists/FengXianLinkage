@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"
+  />
+  <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+  <title>建筑地图</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/building/buildingmap.css">
+  <style>
+    .flex {
+      display: flex;
+    }
+
+    .flex-item {
+      flex: 1;
+    }
+
+    .punch {
+      z-index: 7;
+      background: #ffffff;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      padding-top: 15px;
+    }
+
+    .punch .btn {
+      background: #2C61C8;
+      margin: 15px;
+      border-radius: 4px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .punch .hui {
+      background: #eee;
+      color: #ccc;
+    }
+
+    .punch .tip {
+      margin: 0 15px 0 15px;
+      color: #000;
+      height: 20px;
+      justify-content: space-between;
+      line-height: 30px;
+      font-size: 12px;
+    }
+
+    .punch .tip .small-btn {
+      background: #2C61C8;
+      line-height: 12px;
+      padding: 5px 15px 5px 15px;
+      color: #ffffff;
+      border-radius: 12px;
+    }
+    
+    .punch .tip .warn {
+      color: #E64340;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="list">
+    <div style="z-index: 7;">
+      <!-- <div class="arrow" @click="closeWin">
+        <img src="../../image/return.png" alt="">
+      </div>
+      <div class="zline"></div>
+      <i id="titlename" style="font-style:normal">考勤打卡</i> -->
+      <!-- <div class="asubmit" @click="submit" id="submit" v-if="!flag">选择</div> -->
+      <div class="punch">
+        <div class="flex tip">
+          <div v-if="isAttendance">您已进入考勤范围</div>
+          <div v-else class="warn">您未进入考勤范围</div>
+          <div class="small-btn" @click="refreshLocation">重新定位</div>
+        </div>
+        
+        <div class="flex tip" v-if="toWorkTimeFirst">
+          <div>第一次上班打卡成功</div>
+          <div>{{toWorkTimeFirst}}</div>
+        </div>
+        <div class="flex tip" v-if="outWorkTimeFirst">
+          <div>第一次下班打卡成功</div>
+          <div>{{outWorkTimeFirst}}</div>
+        </div>
+
+        <div class="flex tip" v-if="toWorkTimeSecond">
+          <div>第二次上班打卡成功</div>
+          <div>{{toWorkTimeSecond}}</div>
+        </div>
+        <div class="flex tip" v-if="outWorkTimeSecond">
+          <div>第二次下班打卡成功</div>
+          <div>{{outWorkTimeSecond}}</div>
+        </div>
+
+        <div class="flex tip" v-if="toWorkTimeThree">
+          <div>第三次上班打卡成功</div>
+          <div>{{toWorkTimeThree}}</div>
+        </div>
+        <div class="flex tip" v-if="outWorkTimeThree">
+          <div>第三次下班打卡成功</div>
+          <div>{{outWorkTimeThree}}</div>
+        </div>
+
+
+        <div v-if="type == 0 || type == 1" :class="isAttendance ? 'btn' : 'btn hui'" @click="punch">
+          <span v-if="type == 0">上班打卡</span>
+          <span v-if="type == 1">下班打卡</span>
+        </div>
+        <div v-if="type == 2 || type == 3" class="btn hui" @click="punch">
+          <span v-if="type == 2">今天已打卡</span>
+          <span v-if="type == 3">无法打卡</span>
+        </div>
+        <!-- <div class="btn hui">上班打卡(不在打卡范围)</div> -->
+        <!-- <div class="btn hui">今天已打卡</div> -->
+      </div>
+    </div>
+
+
+    <div id="mapcontainer" class="container" style="z-index: 0;top: 0px;">
+      <div id="mapDiv" style="width: 100%;height: 100%;"></div>
+    </div>
+
+
+  </div>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/vue.js"></script>
+  <script type="text/javascript" src="../../script/UICore.js"></script>
+  <script type="text/javascript" src="../../script/baiduToWgs84.js?t=20180710"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/js/coordtransform.js"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/OMAP-source.js"></script>
+  <script type="text/javascript" src="../../script/map/punchmap2.js"></script>
+</body>
+
+</html>

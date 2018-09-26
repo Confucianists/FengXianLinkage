@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="../../css/currency/main.css">
+  <link rel="stylesheet" href="../../css/event/my_event.css">
+  <script src="../../script/api.js"></script>
+  <script src="../../script/vue.js"></script>
+  <script src="../../script/UICore.js"></script>
+  <script src="../../script/event/myEvent.js"></script>
+
+  <title>我发起的</title>
+</head>
+
+<body style="background-color:#f2f2f2;">
+  <div class="header_top" id="app">
+    <div class="header_zi">
+      <div class="arrow" @click="closeWin">
+        <img src="../../image/return.png" alt="" />
+      </div>
+      <div class="zline"></div>
+      我的经办
+    </div>
+    <div id="is_end">
+      <div class="no_end" :style="notEndStyle" @click="notEndEventList">未办结</div>
+      <div class="yes_end" :style="endStyle" @click="endEventList">已办结</div>
+    </div>
+    <div class="s_title_bg">
+      <div class="s_title_input">
+        <input class="title_se" type="text" name="" v-model="eventTitle" id="eventTitle" placeholder="请输入搜索关键字" />
+        <img src="../../image/icon_search.png" id="serachEvent" @click="serachEvent" />
+      </div>
+    </div>
+  </div>
+
+  <div style="overflow: auto;" id="main">
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="../../css/currency/main.css">
+  <link rel="stylesheet" href="../../css/event/my_event.css">
+  <script src="../../script/api.js"></script>
+  <script src="../../script/vue.js"></script>
+  <script src="../../script/UICore.js"></script>
+  <script src="../../script/event/eventSupervise.js"></script>
+  <title>我的督办</title>
+</head>
+
+<body style="background-color:#f2f2f2;">
+  <div class="header_top" id="app">
+    <div class="header_zi">
+      <div class="arrow" @click="closeWin">
+        <img src="../../image/return.png" alt="" />
+      </div>
+      <div class="zline"></div>
+      我的督办
+    </div>
+    <div class="s_title_bg">
+      <div class="s_title_input">
+        <div style="display: flex;" class="title_se" id="eventTitle">
+          <div style="flex:1;">
+            <input type="text" style="padding: 3px" readonly="true" v-model="startdate" @click="pickerDate('startdate', '选择开始时间')" placeholder="开始时间"
+            />
+          </div>
+          <div style="flex:1;">
+            <input type="text" style="padding: 3px" readonly="true" v-model="enddate" @click="pickerDate('enddate', '选择结束时间')" placeholder="结束时间"
+            />
+          </div>
+        </div>
+        <img src="../../image/icon_search.png" id="serachEvent" @click="serachEvent" />
+      </div>
+    </div>
+  </div>
+  <div class="showName">
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/1.png">超时</span>
+    </div>
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/2.png">预警</span>
+    </div>
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/3.png">正常</span>
+    </div>
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/flag_red.png">督办</span>
+    </div>
+  </div>
+  <style>
+    .showName {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 100000;
+      background: #ffffff;
+      height: 30px;
+      text-align: center;
+      border-top: 1px solid #CDCDCD;
+    }
+
+    .showName .flex-item {
+      flex: 1;
+    }
+
+    .showName .flex-item img {
+      width: 20px;
+      height: 20px;
+      /* float: left; */
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    .showName .flex-item span {
+      display: inline-block;
+      line-height: 30px;
+    }
+  </style>
+  <div style="overflow: auto;" id="main">
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>查询户籍建筑查询</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mint-ui.css">
+    <link rel="stylesheet" href="../../css/houseowner/searchBuildingForHouseowner.css">
+</head>
+
+<body>
+    <div id="list" class="wrapper">
+        <div id="header" class="header">
+            <div class="arrow" @click="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            查询户籍
+            <div class="asubmit" @click="query">查询</div>
+        </div>
+
+
+
+        <!-- <div class="container">
+            <div class="pk_togger" style="margin-top: 60px;">
+              <mt-field type="text"  @click.native="buildingSearch" label="建筑名称:" placeholder="如某某大厦、某某小区、某某民宅" v-model="buildingName">
+              </mt-field>
+
+              <mt-field type="text" label="地图编号:" placeholder="请输入" v-model="mapNum">
+              </mt-field>
+
+              <mt-field type="text" label="地    址:" placeholder="请输入" v-model="address">
+              </mt-field>
+
+              <mt-field type="text" label="楼    号:" placeholder="请输入" v-model="buildingNum">
+              </mt-field>
+
+              <mt-field type="text" label="所属楼层:" placeholder="请输入" v-model="layerNum">
+              </mt-field>
+
+              <mt-field type="text" label="房    号:" placeholder="请输入" v-model="roomNum">
+              </mt-field>
+
+              <mt-cell title="房屋用途:"   @click.native="houseusef"  is-link>
+                  <span>{{houseuse}}</span>
+              </mt-cell>
+
+              <mt-cell title="实际用途:"   @click.native="actualusef"  is-link>
+                  <span>{{actualuse}}</span>
+              </mt-cell> -->
+
+            <!-- </div> -->
+        <!-- </div> -->
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/mint-ui.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/houseowner/searchhouseowner.js"></script>
+</body>
+<template id="searchhosueownerc">
+  <div class="pk_mem_temp">
+      <div class="pk_mem_lable">{{houseownertitle}}</div>
+      <div :class="customclass">
+        <slot></slot>
+      </div>
+  </div>
+</template>
+
+</html>

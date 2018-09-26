@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="../../css/currency/main.css">
+  <link rel="stylesheet" href="../../css/event/event_report.css">
+  <script src="../../script/api.js?t=20180710"></script>
+  <script src="../../script/vue.js?t=20180710"></script>
+  <script src="../../script/UICore.js?t=20180710"></script>
+  <script src="../../script/event/event_report.js?t=20180710?"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/js/coordtransform.js?t=20180710"></script>
+  <script type="text/javascript" src="../../script/Nogis-api/OMAP-source.js?t=20180710"></script>
+  <script type="text/javascript" src="../../script/baiduToWgs84.js?t=20180710"></script>
+  <script src="../../script/vueMixin.js"></script>
+  <script type="text/x-template" id="item-element">
+		<div class="er_templ">
+			<div class="er_templ_in">
+				<div class="er_lable">{{param}}</div>
+				<div :class="myclass">
+					<slot name="myele"></slot>
+				</div>
+			</div>
+		</div>
+	</script>
+  <script type="text/x-template" id="attach-template">
+		<div>
+			<div class="ev_pls_all">
+				<div class="ev_photo_all">
+					<div class="ev_hui_cen"></div>
+					<div class="ev_pls" @click="showItem('photo')">
+						<label>照片</label>
+						<div class="ev_pls_img photo"></div>
+					</div>
+					<div class="ev_atlas" id="imgAdd">
+						<div class="ev_atlas_one" v-for="(imgpath,index) in imgarray.imgpaths">
+							<img src="../../image/icon_del.png" @click="deleteImg(imgpath,imgarray.imgnum)" />
+							<img @click="openImg(imgpath);" :src="imgpath" />
+						</div>
+					</div>
+        </div>
+        <div class="ev_photo_all">
+            <div class="ev_hui_cen"></div>
+            <div class="ev_pls" @click="chooseFile()">
+              <label>选择文件</label>
+              <div class="ev_pls_img video"></div>
+            </div>
+          </div>
+				<div class="ev_photo_all">
+					<div class="ev_hui_cen"></div>
+					<div class="ev_pls" @click="showItem('video')">
+						<label>视频</label>
+						<div class="ev_pls_img video"></div>
+					</div>
+					<div class="ev_videos" id="videoAdd">
+						<div class="ev_videos_one" v-for="(videopath,index) in imgarray.videopaths">
+							<img src="../../image/icon_del.png" @click="deleteVideo(videopath,imgarray.videonum)" />
+							<img @click="openVideo(videopath);" src="../../image/video.jpg" />
+						</div>
+					</div>
+        </div>
+			</div>
+			<div class="hideBg" v-show="myshow.bgshow" @click="closeItem();"></div>
+			<div class="tele-item white-bg">
+				<ul id="img_video" v-show="myshow.camerashow">
+					<li @click="camera_img();"><a href="javascript:void(0);">拍照</a></li>
+					<li @click="getImg();"><a href="javascript:void(0);">从本地选择</a></li>
+					<li class="cancelli" @click="closeItem();"><a href="javascript:void(0);">取消</a></li>
+				</ul>
+				<ul id="img_video" v-show="myshow.videoshow">
+					<li @click="camera_video();"><a href="javascript:void(0);">视频</a></li>
+					<li @click="getVideo();"><a href="javascript:void(0);">从本地选择</a></li>
+					<li class="cancelli" @click="closeItem();"><a href="javascript:void(0);">取消</a></li>
+				</ul>
+			</div>
+		</div>
+	</script>
+  <title>事件上报</title>
+</head>
+
+<body style="background-color:#f2f2f2;">
+  <div id="app" refs="app">
+    <div id="header" style="z-index: 1000000000;">
+      <div class="arrow" id="closeWin" @click="closeWin">
+        <img src="../../image/return.png" alt="">
+      </div>
+      <div class="zline"></div>
+      事件上报
+    </div>
+
+    <div v-cloak>
+      <div class="ev_hui_top"></div>
+      <div id="ev_content">
+        <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='text' && mydata.is_show_in_mobile==true && mydata.id!='coordinateId'">
+          <input slot="myele" v-model="alltag[mydata.column_key]" v-if="mydata.is_not_null==true&&mydata.readonly==true" type="text"
+            name="" id="" placeholder="请输入-必填">
+          <input slot="myele" v-model="alltag[mydata.column_key]" v-if="mydata.is_not_null==true&&mydata.readonly==false" type="text"
+            name="" readonly id="" placeholder="请输入-必填">
+          <input slot="myele" v-model="alltag[mydata.column_key]" v-if="mydata.is_not_null==false&&mydata.readonly==true" type="text"
+            name="" id="" placeholder="请输入">
+          <input slot="myele" v-model="alltag[mydata.column_key]" v-if="mydata.is_not_null==false&&mydata.readonly==false" type="text"
+            name="" readonly id="" placeholder="请输入">
+        </myelement>
+        <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='text' && mydata.is_show_in_mobile==true&& mydata.id=='coordinateId'">
+          <input slot="myele" v-model="alltag[mydata.column_key]" @click="openMap(mydata.column_key)" v-if="mydata.is_not_null==true"
+            type="text" readonly name="" id="" placeholder="请输入-必填">
+          <input slot="myele" v-model="alltag[mydata.column_key]" @click="openMap(mydata.column_key)" v-if="mydata.is_not_null==false"
+            type="text" readonly name="" id="" placeholder="请输入">
+        </myelement>
+        <!-- <myelement v-for="(mydata,index) in formdata" key="addressName" param="地址名称:" myclass="er_input" v-if="mydata.column_label=='text' && mydata.is_show_in_mobile==true&& mydata.id=='coordinateId'">
+					<input slot="myele" ref="addressName" v-model="locationName" type="text" readonly />
+				</myelement> -->
+
+        <myelement v-for="(mydata,index) in formdata" key="addressName" param="地址名称:" myclass="er_input" v-if="mydata.column_label=='text' && mydata.is_show_in_mobile==true&& mydata.id!='coordinateId'">
+          <input slot="myele" ref="addressName" v-model="locationName" type="text" readonly />
+        </myelement>
+        <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='Date' && mydata.is_show_in_mobile==true">
+          <input slot="myele" v-model="alltag[mydata.column_key]" @click="openTime(mydata.column_key)" v-if="mydata.is_not_null==true&&mydata.readonly==true"
+            type="text" name="" readonly id="" placeholder="请输入-必填">
+          <input slot="myele" v-model="alltag[mydata.column_key]" @click="openTime(mydata.column_key)" v-if="mydata.is_not_null==true&&mydata.readonly==false"
+            type="text" name="" readonly id="" placeholder="请输入-必填">
+          <input slot="myele" v-model="alltag[mydata.column_key]" @click="openTime(mydata.column_key)" v-if="mydata.is_not_null==false&&mydata.readonly==true"
+            type="text" name="" readonly id="" placeholder="请输入">
+          <input slot="myele" v-model="alltag[mydata.column_key]" @click="openTime(mydata.column_key)" v-if="mydata.is_not_null==false&&mydata.readonly==false"
+            type="text" name="" readonly id="" placeholder="请输入">
+        </myelement>
+        <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="(mydata.column_label=='select'||mydata.column_label=='radio') && mydata.is_show_in_mobile==true">
+          <input slot="myele" @click="openSelect(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==true&&mydata.readonly==true"
+            type="text" name="" readonly id="" placeholder="请选择-必填">
+          <input slot="myele" @click="openSelect(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==true&&mydata.readonly==false"
+            type="text" name="" readonly id="" placeholder="请选择-必填">
+          <input slot="myele" @click="openSelect(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==false&&mydata.readonly==true"
+            type="text" name="" readonly id="" placeholder="请选择">
+          <input slot="myele" @click="openSelect(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==false&&mydata.readonly==false"
+            type="text" name="" readonly id="" placeholder="请选择">
+        </myelement>
+        <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_input" v-if="mydata.column_label=='checkbox' && mydata.is_show_in_mobile==true">
+          <input slot="myele" @click="openCheckBox(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==true&&mydata.readonly==true"
+            type="text" name="" readonly id="" placeholder="请选择-必填">
+          <input slot="myele" @click="openCheckBox(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==true&&mydata.readonly==false"
+            type="text" name="" readonly id="" placeholder="请选择-必填">
+          <input slot="myele" @click="openCheckBox(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==false&&mydata.readonly==true"
+            type="text" name="" readonly id="" placeholder="请选择">
+          <input slot="myele" @click="openCheckBox(this,mydata.english_name,mydata.column_key)" :ref="mydata.english_name" v-if="mydata.is_not_null==false&&mydata.readonly==false"
+            type="text" name="" readonly id="" placeholder="请选择">
+        </myelement>
+        <myelement v-for="(mydata,index) in formdata" :key="index" :param="mydata.column_name" myclass="er_textarea" v-if="mydata.column_label=='textarea' && mydata.is_show_in_mobile==true">
+          <textarea slot="myele" v-model="alltag[mydata.column_key]" v-if="mydata.is_not_null==true" id="" placeholder="请输入-必填"></textarea>
+          <textarea slot="myele" v-model="alltag[mydata.column_key]" v-if="mydata.is_not_null==false" id="" placeholder="请输入"></textarea>
+        </myelement>
+        <api-upload v-for="(mydata,index) in formdata" :key="index" :imgarray="imgarray" :icon="icon" v-if="mydata.column_label=='file' && mydata.is_show_in_mobile==true"></api-upload>
+        <button v-if="formdata.length > 0" class="ev_upbut" @click="subButtonClick">提交</button>
+      </div>
+
+      <!--部门弹框下拉列表定义-->
+      <div class="tcmodel" id="ev_dep_list" v-show="false">
+        <ul>
+          <li>
+            <label>建议受理部门 </label>
+            <font class="radioc">(单选)</font>
+          </li>
+          <li>
+            <label>农业局</label>
+            <input type="radio" name="" value="" class="radioc" checked="checked" />
+          </li>
+          <li>
+            <label>人社局</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>国土局(移民办)</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>教育局</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>民政局</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" onclick="dep_no_choose()">取消</div>
+          <div class="confirm_left" onclick="">确定</div>
+        </div>
+      </div>
+      <!--紧急程度下拉列表定义-->
+      <div class="tcmodel" id="ev_jjcd_list" v-show="false">
+        <ul>
+          <li>
+            <label>紧急程度 </label>
+            <font class="radioc">(单选)</font>
+          </li>
+          <li>
+            <label>一般</label>
+            <input type="radio" name="" value="" class="radioc" checked="checked" />
+          </li>
+          <li>
+            <label>紧急</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+          <li>
+            <label>特急</label>
+            <input type="radio" name="" value="" class="radioc" />
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" onclick="jc_no_choose()">取消</div>
+          <div class="confirm_left" onclick="">确定</div>
+        </div>
+      </div>
+      <div class="tcmodel" id="ev_ophandler" v-show="show.submitDiv">
+        <div class="route_title">
+          <label>路由</label>
+        </div>
+        <ul v-for="(item,index) in route_arr">
+          <li>
+            <div class="ev_in_handler bg_j" @click="choose(item,index)">
+              <label class="ev_halab" style="margin-left: 0px;">{{item.convertName}}</label>
+              <input type="text" name="" id="" readonly="readonly" placeholder="请选择" />
+            </div>
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div style="text-align:center" @click="closeSubmitDiv()">取消</div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <!--提交意见以及执行人定义-->
+      <div class="tcmodel" id="ev_ophandler" v-show="show.submitDivD">
+        <ul>
+          <li>
+            <label>提交 </label>
+          </li>
+          <!-- <li>
+						<div class="ev_in_opinion">
+							<label class="ev_oplab" style="margin-left: 0px;">意见</label>
+							<textarea id="zxryj" placeholder="请在此处填写意见"></textarea>
+						</div>
+					</li> -->
+          <li>
+            <div class="ev_in_handler bg_j" @click="nextExecutorClick">
+              <label class="ev_halab" style="margin-left: 0px;">选择下一步执行人</label>
+              <input type="text" name="" id="" readonly="readonly" placeholder="请选择" />
+            </div>
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" @click="closeSubmitDiv()">取消</div>
+          <!-- <div class="confirm_left" onclick="">确定</div> -->
+        </div>
+      </div>
+      <!--请选择下一执行步骤-->
+      <div class="tcmodel" id="ev_next_step" v-show="show.ev_next_stepD">
+        <ul id="nodeUl">
+          <li>
+            <label>请选择下一执行步骤 </label>
+          </li>
+          <li @click="selectPerson(step.activityId,step.doSelectType)" v-for="step in steps">
+            <label>{{step.convertName}}</label>
+          </li>
+        </ul>
+        <div class="conorcan">
+          <div class="cancel_right" @click="closeSubmitDiv()">取消</div>
+          <!-- <div class="confirm_left" onclick="">确定</div> -->
+        </div>
+      </div>
+      <!--遮罩层定义-->
+      <div class="zcover" v-show="show.zcover"></div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

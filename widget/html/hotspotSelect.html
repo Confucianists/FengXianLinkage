@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script type="text/javascript" src="../script/Nogis-api/OMAP-source.js"></script>
+    <style>
+        html,
+        body {
+            height: 99%;
+        }
+    </style>
+    <title>地图</title>
+</head>
+
+<body onload="onload()">
+    <div id="mapDiv" style="width:100%;height: 100%;"></div>
+</body>
+<script type="text/javascript">
+    var onload = function() {
+        var config = new OMAP.Config({
+            imagePath: "http://61.185.20.73:58888/image",
+            jsPath: "http://61.185.20.73:58888/resource/js/",
+            mapId: 1,
+            scale: 0.353,
+            hotFileLevel: 5,
+            overlook: Math.PI / 4,
+            rotate: Math.PI / 4
+        });
+        var layer25D = new OMAP.Layer.NOGISLayer("25D", "http://61.185.20.73:58888/resource/", {
+            isBaseLayer: false,
+            transparent: true,
+            defaultImage: '../script/Nogis-api/img/transparent.png',
+            loadHotspot: true,
+            hotspotTouch: touchHandler
+        });
+        var layerYX = new OMAP.Layer.NOGISLayer("YX", "http://61.185.20.73:58888/resource/yx", {
+            isBaseLayer: true,
+            defaultImage: '../script/Nogis-api/img/nopic.jpg',
+            loadHotspot: false
+        });
+        var ext = new OMAP.Bounds(-56255400.354765005, -56255400.354765005, 56255400.354765005, 56255400.354765005);
+        // 地图配置
+        var mapOptions = {
+            extent: ext,
+            center: [7663518.5383787, 4661344.4169003],
+            zoom: 4,
+            config: config,
+            resolutions: [
+                107.29866095498084608,
+                53.64933047749042304,
+                26.82466523874521152,
+                13.41233261937260576,
+                6.70616630968630288,
+                3.35308315484315144,
+                1.67654157742157572,
+                0.83827078871078786,
+                0.41913539435539393
+            ],
+            numZoomLevels: 9,
+            layers: [layer25D, layerYX],
+            controls: [new OMAP.Control.Navigation()]
+        };
+        // 初始化地图
+        var map = new OMAP.Map("mapDiv", mapOptions);
+
+        function touchHandler(e) {
+            var hoverGeom = e.target;
+            layer25D.hotspot.hoverlayer.removeAllFeatures();
+            if (layer25D.hotspot.popup) {
+                map.removePopup(layer25D.hotspot.popup);
+                layer25D.hotspot.popup.destroy();
+                layer25D.hotspot.popup = null;
+            }
+            if (hoverGeom) {
+                var geom = hoverGeom.geometry.clone();
+                var attr = hoverGeom.attributes;
+                var f = new OMAP.Feature.Vector(geom, attr, null);
+                layer25D.hotspot.hoverlayer.addFeatures([f]);
+                var pt = geom.getCentroid();
+                var id = hoverGeom.data.id;
+                var html =
+                    "<div style='background-color: rgba(255, 255, 255, 1);border-radius: 5px;padding: 2px 8px 2px 8px;margin-bottom: 3px;box-shadow: inset 0 0 0 rgba(0, 0, 0, .075), 2px 2px 2px 2px rgba(51, 51, 51, 0.7);white-space: nowrap;'>" +
+                    hoverGeom.data.name + "</div>";
+                layer25D.hotspot.popup = createPop('' + id, html, pt.x, pt.y, -30, -40);
+                var props = "";
+                for (prop in window.parent) {
+                    props += prop + ",";
+                }
+                alert(props);
+                //window.parent.build=id;
+            }
+        }
+
+        function createPop(id, html, x, y, xp, yp) {
+            if (map == null || typeof(map) == 'undefined') return;
+            var popup = new OMAP.Popup(id,
+                new OMAP.LonLat(x, y),
+                new OMAP.Size(100, 100),
+                html,
+                false, '', xp, yp);
+            popup.setBackgroundColor("transparent");
+            popup.autoSize = 1;
+            //popup.padding = new OMAP.Bounds(-50,0,0,-50);
+            map.addPopup(popup);
+            return popup;
+        }
+    }
+</script>
+
+</html>

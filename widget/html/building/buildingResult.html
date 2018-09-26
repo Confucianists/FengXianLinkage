@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>楼栋查询结果</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/mint-ui.css">
+    <link rel="stylesheet" href="../../css/building/buildingResult.css">
+</head>
+<body>
+  <div class="wrapper">
+      <div class="header"></div>
+      <div id="info" class="container">
+        <div v-for="(item,index) of items" @click="choose(index)">
+          <mt-cell title="建筑名称:">
+            <span width="150px">{{item.buiName}}</span>
+          </mt-cell>
+
+          <mt-cell title="地图编号:">
+            <span width="150px">{{item.entityId}}</span>
+          </mt-cell>
+
+          <mt-cell title="建筑地址:">
+            <span width="150px">{{item.address}}</span>
+          </mt-cell>
+
+          <mt-cell title="楼号:">
+            <span width="150px">{{item.buiCode}}</span>
+          </mt-cell>
+
+        </div>
+
+          <!-- <div v-for="(item,index) of items" @click="choose(index)">
+            <div>{{item.buiName}}</div>
+            <div>{{item.entityId}}</div>
+            <div>{{item.code}}</div>
+            <div>{{item.address}}</div>
+            <div>{{item.buiCode}}</div>
+          </div> -->
+      </div>
+  </div>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/UICore.js"></script>
+  <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/mint-ui.js"></script>
+  <script type="text/javascript" src="../../script/building/buildingResult.js"></script>
+</body>
+</html>

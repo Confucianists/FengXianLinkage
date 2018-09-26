@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="../../css/currency/main.css">
+  <link rel="stylesheet" href="../../css/event/my_event.css">
+  <script src="../../script/api.js"></script>
+  <script src="../../script/vue.js"></script>
+  <script src="../../script/UICore.js"></script>
+  <script src="../../script/event/areaEvent.js"></script>
+  <title>区域事件</title>
+</head>
+
+<body style="background-color:#f2f2f2;">
+  <div class="header_top" id="app">
+    <div class="header_zi">
+      <div class="arrow" @click="closeWin">
+        <img src="../../image/return.png" alt="" />
+      </div>
+      <div class="zline"></div>
+      事件总览
+    </div>
+    <div id="is_end">
+      <div class="no_end" :style="notEndStyle" @click="notEndEventList">未办结</div>
+      <div class="yes_end" :style="endStyle" @click="endEventList">已办结</div>
+    </div>
+  </div>
+  
+  <div class="showName">
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/1.png">事件超时</span>
+    </div>
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/2.png">事件预警</span>
+    </div>
+    <div class="flex-item">
+      <span>
+        <img src="../../image/smIcon/3.png">事件正常</span>
+    </div>
+  </div>
+  <style>
+    .showName {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 100000;
+      background: #ffffff;
+      height: 30px;
+      text-align: center;
+      border-top: 1px solid #CDCDCD;
+    }
+
+    .showName .flex-item {
+      flex: 1;
+    }
+
+    .showName .flex-item img {
+      width: 20px;
+      height: 20px;
+      /* float: left; */
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    .showName .flex-item span {
+      display: inline-block;
+      line-height: 30px;
+    }
+  </style>
+
+  <div style="overflow: auto;" id="main">
+  </div>
+
+</body>
+
+</html>

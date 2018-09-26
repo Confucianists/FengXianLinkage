@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"
+  />
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <link rel="stylesheet" href="../css/work/work.css">
+  <link rel="stylesheet" href="../css/weui.css">
+  <style>
+    .weui-grid {
+      width: 20%;
+    }
+
+    .weui-grid__label {
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logoimg">
+    <img src="../image/icon/banner.png">
+  </div>
+  <div id="home">
+    <div class="content" style="display:none;height:100%;padding-top:100px;">
+
+      <!-- <div class="temp_cur" v-on:click="jumpPage('打卡', '../html/map/punchmap.html')"> -->
+
+      <!--新的九宫格-->
+
+
+      <div class="template">
+        <div class="title">
+          <div class="title_name">环保事件</div>
+        </div>
+        <div class="weui-grids">
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="sjsb()">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/01.png" alt="">
+            </div>
+            <p class="weui-grid__label">事件上报</p>
+          </a>
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="sjsp()">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/02.png" alt="">
+            </div>
+            <p class="weui-grid__label">我的待办</p>
+          </a>
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="wfqd()">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/03.png" alt="">
+            </div>
+            <p class="weui-grid__label">我的经办</p>
+          </a>
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="areaEvent()">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/04.png" alt="">
+            </div>
+            <p class="weui-grid__label">事件总览</p>
+          </a>
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="sjdb()">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/db.png" alt="">
+            </div>
+            <p class="weui-grid__label">事件督办</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="template">
+        <div class="title">
+          <div class="title_name">应急事件</div>
+        </div>
+        <div class="weui-grids">
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="jumpPage('应急事件', '../html/emergencyEvent/event_report.html')">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/05.png" alt="">
+            </div>
+            <p class="weui-grid__label">应急上报</p>
+          </a>
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="jumpPage('应急处理', '../html/emergencyEvent/eventApprove.html')">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/06.png" alt="">
+            </div>
+            <p class="weui-grid__label">应急处理</p>
+          </a>
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="jumpPage('应急结案', '../html/emergencyEvent/my_event.html')">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/07.png" alt="">
+            </div>
+            <p class="weui-grid__label">应急结案</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="template">
+        <div class="title">
+          <div class="title_name">事件公示</div>
+        </div>
+        <div class="weui-grids">
+          <a href="javascript:void(0);" class="weui-grid" v-on:click="jumpPage('事件公示', '../html/emergencyEvent/my_event.html')">
+            <div class="weui-grid__icon">
+              <img src="../image/icon/08.png" alt="">
+            </div>
+            <p class="weui-grid__label">事件公示</p>
+          </a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/vue.js"></script>
+  <script type="text/javascript" src="../script/UICore.js"></script>
+  <script type="text/javascript" src="../script/home.js"></script>
+</body>
+
+</html>

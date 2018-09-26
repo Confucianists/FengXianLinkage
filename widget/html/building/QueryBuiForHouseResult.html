@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>建筑名称列表</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/building/QueryBuiForHouseResult.css">
+    <link rel="stylesheet" href="../../css/animate/animate.css">
+</head>
+
+<body>
+    <div class="wrapper" id="all_con" >
+        <div id="info" class="container">
+            <ul v-for="(item,index) of items" @click="choose(index)">
+                <li>
+                    <div class="temp_result">
+                        <div class="blue_border"></div>
+                        <div class="num_sort">
+                            <h1>{{index+1}}</h1></div>
+                        <div class="result_info">
+                            <div class="info_top">
+                                <label>{{item.buiName}}</label><label>({{item.entityId}})</label>
+                            </div>
+                            <div class="info_botton">
+                                <label>{{item.address}}</label><label class="s_j">|</label>楼号:<label>{{item.buiCode}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--遮罩层定义-->
+        <div style="display:block" class="zcover" @click="cover_close" v-show="isshow"></div>
+        <transition name="custom-classes-transition" enter-active-class="slideInDown" leave-active-class="slideInUp">
+            <div class="search_box" v-show="isshow">
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">建筑名称:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="buiName" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">地图编号:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="entityId" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">地&nbsp&nbsp址:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="buiAddr" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">楼号类型:</div>
+                    <div class="pk_mem_input bg_j">
+                        <input type="text" name="" @click="buiTypef" v-model="buiType" readonly="readonly" placeholder="请选择" />
+                    </div>
+                </div>
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">楼&nbsp&nbsp号:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="text" name="" v-model="buiNum" placeholder="请输入-必填" />
+                    </div>
+                </div>
+                <button class="search_submit" @click="query">搜索</button>
+            </div>
+        </transition>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/building/QueryBuiForHouseResult.js"></script>
+</body>
+</html>

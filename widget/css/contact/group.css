@@ -1,0 +1,34 @@
+body{
+	background-color: white;
+	font-size: 12px;
+}
+#group_all{
+	width: 100%;
+	height: auto;
+	border: 0px solid blue;
+}
+ul{
+	width: 100%;
+	border: 0px solid red;
+}
+ul li{
+	height: 35px;
+	line-height: 35px;
+	text-indent: 15px;
+	border-bottom: 1px solid #F2F2F2;
+}
+.bg_j{
+	display: block;
+	/*background: url(../../img/arrow_icon.png) no-repeat right 0px center;*/
+	background-image: url(../../image/arrow_icon.png);
+	background-repeat: no-repeat;
+	background-position: 95%;
+	background-size: 6px;
+}
+.loadinfo{
+	text-align: center;
+	line-height: 35px;
+}
+.loadover{
+	display: none;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/my.css">
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/My/personInfo.js"></script>
+
+    <!-- 组件模版 -->
+    <script type="text/x-template" id="item-element">
+      <div class="pk_mem_temp">
+          <div class="pk_mem_lable lab_size" >{{actioname}}</div>
+          <div :class="myclass">
+            <slot></slot>
+          </div>
+      </div>
+    </script>
+</head>
+<body>
+  <div class="wrapper" id="list">
+      <!-- 标题栏 -->
+      <div id="header">
+          <div class="arrow" id="closeWin" @click="closeWin">
+              <img src="../../image/return.png" alt="">
+          </div>
+          <div class="zline"></div>
+            个人信息
+
+      </div>
+      <div class="container">
+          <div  class="pk_togger" style="margin-top: 60px;">
+            <main-item actioname="昵称" myclass="pk_mem_input_all">
+                <input type="text" v-model="userName" name="" readonly="readonly" />
+            </main-item>
+            <main-item actioname="性别" myclass="pk_mem_input_all">
+                <input type="text"  v-model="sex" name="" readonly="readonly" />
+            </main-item>
+            <main-item actioname="手机号码" myclass="pk_mem_input_all">
+                <input type="text" v-model="mobilePhone"  name="" readonly="readonly" />
+            </main-item>
+            <main-item actioname="邮箱" myclass="pk_mem_input_all">
+                <input type="text" v-model="email" name="" readonly="readonly" />
+            </main-item>
+            <main-item actioname="所属部门" myclass="pk_mem_input_all">
+                <input type="text" v-model="department" name="" readonly="readonly" />
+            </main-item>
+            <main-item actioname="二维码名片" myclass="bg_j pk_mem_input inp_size">
+                <input type="text" v-model="QRCodeCard" @click="QRCodeCardf" name="" readonly="readonly" />
+            </main-item>
+
+          </div>
+      </div>
+  </div>
+
+
+</body>
+</html>

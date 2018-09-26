@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/building/units.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="header">
+            <div class="arrow" id="closeWin">
+                <img src="../../image/return.png" alt="">
+            </div>
+            <div class="zline"></div>
+            建筑单元
+            <div class="asubmit" id="pkh_add_su">提交</div>
+        </div>
+        <div class="container">
+            <div id="list" class="pk_togger" style="margin-top: 60px;">
+                <div class="pk_mem_temp">
+                    <div class="pk_mem_lable">单元/梯/区:</div>
+                    <div class="pk_mem_input_all">
+                        <input type="number" name="" v-model="unit" placeholder="请输入" />
+                    </div>
+                </div>
+                <div class="divide"></div>
+                <button class="ev_upbut" @click="addunit()">录入</button>
+                <div class="divide"></div>
+                <div  class="borders" v-for="(item,index) in items" @click="del(index)">
+                <span class="order">{{item.id}}</span>
+                <span class="content">{{item.unitName}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/UICore.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript" src="../../script/building/units.js"></script>
+</body>
+
+</html>

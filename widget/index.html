@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+      />
+    <meta name="format-detection"
+      content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <style>
+    header {
+      background-color: #ffffff
+    }
+
+    header ul li {
+      height: 50px;
+      line-height: 50px;
+      display: none;
+      text-align: left;
+      color: #323237;
+      font-size: 18px;
+      margin-left: 15px;
+      margin-bottom: -1px;
+    }
+
+    header ul li.active {
+      display: block;
+    }
+
+    #footer {
+      background-color: #ffffff
+    }
+
+    #footer ul li {
+      padding-top: 35px;
+      padding-bottom: 4px;
+      background: url() no-repeat center 12px;
+      background-size: auto 22px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    #footer ul li.active {
+      color: #29ADFF;
+    }
+
+    #footer ul li:nth-child(1) {
+      background-image: url(./image/bottombtn0101.png);
+    }
+
+    #footer ul li:nth-child(2) {
+      background-image: url(./image/bottombtn5555.png);
+    }
+
+    #footer ul li:nth-child(3) {
+      background-image: url(./image/bottombtn0401.png);
+    }
+
+    #footer ul li:nth-child(4) {
+      background-image: url(./image/bottombtn5555.png);
+    }
+
+    #footer ul li:nth-child(1).active {
+      background-image: url(./image/bottombtn0102.png);
+    }
+
+    #footer ul li:nth-child(2).active {
+      background-image: url(./image/bottombtn555566.png);
+    }
+
+
+    #footer ul li:nth-child(3).active {
+      background-image: url(./image/bottombtn0402.png);
+    }
+
+    #footer ul li:nth-child(4).active {
+      background-image: url(./image/bottombtn0402.png);
+    }
+
+    .flex-con {
+      overflow: auto
+    }
+  </style>
+  </head>
+
+  <body>
+    <div id="wrap" class="flex-wrap flex-vertical">
+      <header>
+        <ul>
+          <li class="border-b active">工作</li>
+          <li class="border-b">考勤打卡</li>
+          <!-- <li class="border-b" >联系人</li> -->
+          <li class="border-b">我的</li>
+        </ul>
+      </header>
+      <div id="main" class="flex-con">
+
+      </div>
+      <div id="footer" class="border-t">
+        <ul class="flex-wrap">
+          <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con
+            active">工作</li>
+          <li tapmode="hover" onclick="randomSwitchBtn( this );"
+            class="flex-con">打卡</li>
+          <!-- <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">联系人</li> -->
+          <li tapmode="hover" onclick="randomSwitchBtn( this );"
+            class="flex-con">我的</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+</html>
+<script type="text/javascript" src="script/Nogis-api/js/coordtransform.js"></script>
+<script type="text/javascript" src="script/Nogis-api/OMAP-source.js"></script>
+<script type="text/javascript" src="script/baiduToWgs84.js"></script>
+<script src="script/UICore.js"></script>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript">
+  var sendl = null
+
+  // 像后台传轨迹
+  function sendLocation() {
+    var info = $api.getStorage('userinf');
+    var accountId = info.accountId;
+    var intervalTime = ($api.getStorage('userData').intervalTime > 0 ? $api.getStorage('userData').intervalTime * 1000 :
+      false) || 60000;
+
+    var param = {
+      url: UICore.serviceUrl + "mobile/mobileInterface.shtml",
+      accountId: accountId,
+      intervalTime: 3000
+    };
+    var baidiu = api.require('gridtrail');
+    var resultCallback = function (ret, err) {
+        alert(JSON.stringify(ret))
+    }
+    baidiu.getOcnGPS(param, resultCallback);
+    if ($api.getStorage('userData').intervalTime != '-1') {
+
+      var punch = $api.getStorage('punch');
+      // 判断是否上班打卡
+      if (punch == 1) {
+
+
+      }
+    }
+  }
+
+  apiready = function () {
+    $api.setStorage('main_h', $api.dom('#main').offsetHeight);
+    funIniGroup();
+    //sendLocation();
+  };
+
+
+  function funIniGroup() {
+    var eHeaderLis = $api.domAll('header li'),
+      frames = [];
+    for (var i = 0, len = eHeaderLis.length; i < len; i++) {
+      var urls;
+      var name;
+      if (i == 0) {
+        name = 'work';
+        urls = './html/home.html'
+      } else if (i == 1) {
+        name = 'map';
+        //urls = './html/map.html'
+        urls = './html/map/punchmap.html'
+      } else if (i == 2) {
+        name = 'contact';
+        urls = './html/My/my.html'
+      } else if (i == 3) {
+        name = 'my';
+        urls = './html/My/my.html'
+      }
+      frames.push({
+        name: name,
+        url: urls,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: false,
+        bounces: false
+      })
+    }
+    api.openFrameGroup({
+      name: 'group',
+      scrollEnabled: false,
+      vScrollBarEnabled: false,
+      rect: {
+        x: 0,
+        y: $api.dom('header').offsetHeight,
+        w: api.winWidth,
+        h: $api.dom('#main').offsetHeight
+      },
+      index: 0,
+      preload: 0,
+      frames: frames
+    }, function (ret, err) {
+
+    });
+  }
+
+  // 随意切换按钮
+  function randomSwitchBtn(tag) {
+    api.hideProgress();
+
+    if (tag == $api.dom('#footer li.active')) return;
+    closrFrame();
+    var eFootLis = $api.domAll('#footer li'),
+      eHeaderLis = $api.domAll('header li'),
+      index = 0;
+    for (var i = 0, len = eFootLis.length; i < len; i++) {
+      if (tag == eFootLis[i]) {
+        index = i;
+      } else {
+        $api.removeCls(eFootLis[i], 'active');
+        $api.removeCls(eHeaderLis[i], 'active');
+      }
+    }
+    $api.addCls(eFootLis[index], 'active');
+    $api.addCls(eHeaderLis[index], 'active');
+    if (index == 2) {
+      api.setFrameGroupIndex({
+        name: 'group',
+        index: index,
+        reload: true
+      });
+    } else {
+      api.setFrameGroupIndex({
+        name: 'group',
+        index: index
+      });
+    }
+  }
+
+  function closrFrame() {
+    api.closeFrame({
+      name: "zzjg_frame"
+    });
+    api.closeFrame({
+      name: "wly_frame"
+    });
+    api.closeFrame({
+      name: "qz_frame"
+    });
+  }
+</script>
