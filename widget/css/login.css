@@ -20,21 +20,21 @@ body {
 
 #dlogo {
     width: 100%;
-    height: 40px;
     /* margin-bottom: 15px; */
     border: 0px solid red;
 }
 
 .dlogoimg {
+    width: 60%;
+    margin-left: 20%;
     text-align: center;
-    margin: 0 auto;
-    border: 0px solid red;
-}
-
-.dlogoimg img {
-    width: 80%;
-    /* height: 140px; */
-    margin-left: -5%;
+    font-size:36px; 
+    color: #fff;
+    font-weight: 600; 
+    background-image: -webkit-linear-gradient(bottom, rgb(201, 115, 255), #4242FF);
+    background-clip: text;
+    border-radius: 20%;
+    margin-bottom: -20px;
 }
 
 #dtitle {
