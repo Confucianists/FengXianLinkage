@@ -183,7 +183,8 @@ window.apiready = function () {
                 }
               }
             } else {
-              api.alert({ msg: JSON.stringify(err) });
+              // alert('sdsdsd');
+              // api.alert({ msg: JSON.stringify(err) });
             }
           });
         }
