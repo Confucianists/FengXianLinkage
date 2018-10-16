@@ -18,7 +18,7 @@ apiready = function () {
             var w_all = offset_con.w;
 
             var cur_w = w_all - 3;
-            
+
             /*计算功能通用盒子的长度*/
             var cur_w = 'width:' + (Math.floor(cur_w / 4)) + "px;height:" + (Math.floor(cur_w / 4)) + "px";
             //var cur_h = 'height:'+(Math.floor(cur_w/4))+"px";

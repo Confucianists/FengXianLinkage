@@ -7,11 +7,13 @@
   <link rel="stylesheet" href="../../css/currency/main.css">
   <link rel="stylesheet" href="../../css/event/detail_process.css">
   <link rel="stylesheet" href="../../css/event/event_report.css">
+  <link rel="stylesheet" href="../../css/building/building.css">
   <script src="../../script/api.js"></script>
   <script src="../../script/vue.js"></script>
   <script src="../../script/vueMixin.js"></script>
   <script src="../../script/UICore.js"></script>
   <script src="../../script/event/eventDetail.js"></script>
+
   <title>详情</title>
 </head>
 
@@ -70,6 +72,17 @@
             <label class="ev_oplab" style="margin-left: 0px;">意见</label>
             <textarea id="zxryj" v-model="wf_wfComments" placeholder="请在此处填写意见"></textarea>
           </div>
+        </li>
+        <li  v-show="show.Process">
+          <div class="er_templ">
+            <div class="er_templ_in">
+              <div class="er_lable" >处理时限</div>
+                <div class="bg_j pk_mem_input">
+                <input type="text" name="" @click="openProcess()" v-model="limit" readonly="readonly" placeholder="请选择" />
+                </div>
+            </div>
+          </div>
+          <!-- <div class="ev_in_process" @click="openProcess()">处理时限</div> -->
         </li>
         <li>
           <div>

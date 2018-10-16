@@ -1,15 +1,15 @@
 (function (window) {
   var mockFlag = false;
-  // var serviceUrl = "http://61.160.70.170:18186/";
+  var serviceUrl = "http://61.160.70.170:38090/";
   // var serviceUrl = "http://61.160.70.170:8888/";
   // var serviceUrl = "http://10.63.48.168:58888/";
   // var serviceUrl = "http://10.63.32.89:57777/";
-  var serviceUrl = "http://61.185.20.71:80/"
+  // var serviceUrl = "http://61.185.20.71:80/"
     // var serviceUrl = "http://61.185.20.71:58888/"
   //var serviceUrl = "http://192.168.1.11:8080/";
-  
+
   var serviceUrlSet = window.localStorage.getItem('ipBp2');
-  
+
   if(!serviceUrlSet){
     window.localStorage.setItem('ipBp2', serviceUrl);
     serviceUrlSet = serviceUrl;

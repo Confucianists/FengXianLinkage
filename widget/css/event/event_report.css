@@ -47,6 +47,12 @@
 	background-repeat: no-repeat;
 	border: 0px solid red;
 }
+.ev_in_process{
+	width: 100%;
+	height: auto;
+	float: left;
+	margin-left: 7px;
+}
 .video{
 	background-position: 98% -41px;
 }
